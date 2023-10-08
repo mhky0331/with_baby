@@ -1,0 +1,2 @@
+class FacilityEquipment < ApplicationRecord
+end

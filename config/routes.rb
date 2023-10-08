@@ -1,4 +1,36 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'equipments/index'
+    get 'equipments/facility'
+    get 'equipments/edit'
+  end
+  namespace :admin do
+    get 'comments/index'
+  end
+  namespace :admin do
+    get 'posts/index'
+  end
+  namespace :admin do
+    get 'facilities/index'
+    get 'facilities/show'
+    get 'facilities/edit'
+  end
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+  end
+  namespace :user do
+    get 'posts/index'
+    get 'posts/show'
+    get 'posts/new'
+    get 'posts/edit'
+  end
+  namespace :user do
+    get 'facilities/index'
+    get 'facilities/show'
+    get 'facilities/new'
+    get 'facilities/edit'
+  end
   namespace :user do
     get 'users/show'
     get 'users/edit'
