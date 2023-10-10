@@ -4,15 +4,21 @@ class Admin::EquipmentsController < ApplicationController
     @equipments = Equipment.all.page(params[:page]).per(10)
   end
 
-  def facility
+  def create
     @equipment = Equipment.new
   end
 
   def edit
     @equipment = Equipment.find(params[:id])
+      if @equipment.save
+         redirect_to user_equipments_path(@equipment.id)
+      else
+         @equipments = Equipment.all
+         render :index
+      end
   end
 
-   def update
+  def update
     @equipment = Equipment.find(params[:id])
       if @equipment.update(equipment_params)
          redirect_to admin_equipments_path(@equipment.id)
@@ -29,7 +35,7 @@ class Admin::EquipmentsController < ApplicationController
 
   private
 
-  def facility_params
+  def equipment_params
     params.require(:equipment).permit(:name)
   end
 
