@@ -1,5 +1,10 @@
 class User::CommentsController < ApplicationController
 
+  def index
+    # .per(10)の数字で一覧ページに表示するレコード数を変更できる
+    @comments = Comment.all.page(params[:page]).per(10)
+  end
+
   def create
     post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -8,7 +13,7 @@ class User::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:post_id])
     @comment.destroy
   end
 

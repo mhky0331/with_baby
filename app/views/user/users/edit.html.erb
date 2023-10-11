@@ -1,2 +1,33 @@
-<h1>User::Users#edit</h1>
-<p>Find me in app/views/user/users/edit.html.erb</p>
+<div class="container">
+  <div class="d-flex align-items-end" style="height:50px;">
+    <h4><b>会員情報編集</b></h4>
+  </div>
+  <%= form_with model: @user,url:user_users_path, local:true do |f| %>
+    <div class = "row">
+      <div class = "col-8">
+        <table class='table'>
+          <tr>
+            <div class="field">
+              <td><%= f.label :"名前" %></td>
+              <td><%= f.text_field :name, autofocus: true %></td>
+            </div>
+          </tr>
+          <tr>
+            <div class="field">
+              <td><%= f.label :"メールアドレス" %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+            </div>
+          </tr>
+        </table>
+      </div>
+      <div class = "col-4">
+        <div class="d-flex align-items-end" style="height:300px;">
+          <div class="form-group">
+            <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= image_tag 'line_sweets.png',size:'10,30' %>
+</div>
