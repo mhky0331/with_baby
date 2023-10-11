@@ -1,2 +1,18 @@
-<h1>User::Posts#edit</h1>
-<p>Find me in app/views/user/posts/edit.html.erb</p>
+<div class="container">
+  <div class='mx-auto col-md-7'>
+    <h1>投稿編集</h1>
+    <%= form_with model: @posts, url :user_posts_path(@posts), method: :patch, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :投稿画像 %>
+        <%= f.file_field :posted_photo, class: "form-control-file", accept: 'image/*' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :投稿内容 %>
+        <%= f.text_area :content, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "変更を保存", class: 'btn btn-info' %>
+      </div>
+    <% end %>
+  </div>
+</div>

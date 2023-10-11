@@ -11,6 +11,6 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, :email, :profile_image, presence: true
+  validates :name, :email, presence: true
 
 end

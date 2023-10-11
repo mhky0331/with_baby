@@ -1,21 +1,21 @@
 <div class="container">
-  <h1>投稿一覧</h1>
+  <h1>お気に入り一覧</h1>
     <table class='table table-hover table-inverse'>
       <thead>
         <tr>
-          <th>投稿ID</th>
-          <th>投稿内容</th>
+          <th>お気に入りID</th>
+          <th>お気に入り投稿</th>
         </tr>
       </thead>
       <tbody>
-        <% @posts.each do |post| %>
+        <% @favorites.each do |favorite| %>
           <tr>
-            <td><%= post.id %></td>
-            <td><%= post.content %></td>
+            <td><%= favorite.id %></td>
+            <td><%= @post.content %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  <%= paginate @posts %>
+  <%= paginate @favorites %>
   <%= image_tag 'line_sweets.png',size:'10,30' %>
 </div>
