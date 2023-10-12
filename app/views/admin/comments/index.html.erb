@@ -1,2 +1,23 @@
-<h1>Admin::Comments#index</h1>
-<p>Find me in app/views/admin/comments/index.html.erb</p>
+<div class="container">
+  <h1>コメント一覧</h1>
+    <table class='table table-hover table-inverse'>
+      <thead>
+        <tr>
+          <th>コメントID</th>
+          <th>投稿内容</th>
+          <!--<th>削除</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= comment.id %></td>
+            <td><%= comment.content %></td>
+            <td><%= link_to '削除', @comment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%= paginate @comments %>
+  <%= image_tag 'line_sweets.png',size:'10,30' %>
+</div>

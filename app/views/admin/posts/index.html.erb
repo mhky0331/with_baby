@@ -1,2 +1,23 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container">
+  <h1>投稿一覧</h1>
+    <table class='table table-hover table-inverse'>
+      <thead>
+        <tr>
+          <th>投稿ID</th>
+          <th>投稿名</th>
+          <!--<th>削除</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.id %></td>
+            <td><%= link_to posts.name, admin_posts_path(post.id) %></td>
+            <td><%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%= paginate @posts %>
+  <%= image_tag 'line_sweets.png',size:'10,30' %>
+</div>

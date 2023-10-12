@@ -1,2 +1,29 @@
-<h1>Admin::Equipments#index</h1>
-<p>Find me in app/views/admin/equipments/index.html.erb</p>
+<div class="container">
+  <div class='mx-auto col-md-7'>
+    <h1>設備一覧・追加</h1>
+    <%= form_with model: @equipment, url:'/admin/equipments', method: :post, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :"設備名" %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "新規登録", class: 'btn btn-info' %>
+      </div>
+    <% end %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>設備</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><% @equipments.each do |equipment| %></tr>
+          <td><%= equipment.name %></td>
+          <td align="right"><%= link_to "編集する", edit_admin_equipments_path(equipment.id), class: 'btn btn-success' %></td>
+          <td align="right"><%= link_to '削除する', @equipment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= image_tag 'line_sweets.png',size:'10,30' %>
+</div>

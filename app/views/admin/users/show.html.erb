@@ -1,2 +1,24 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class='container'>
+  <h1>会員詳細</h1>
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= image_tag @facilities.image, size: '250x150' %>
+    </div>
+    <div class='col-md-6'>
+      <table class="table">
+        <tr>
+          <td>会員名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>利用中</td>
+          <td><%= @facilities.active %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
