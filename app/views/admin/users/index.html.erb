@@ -12,12 +12,11 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= link_to users.name,user_users_path(user.id) %></td>
+            <td><%= link_to @users.name,user_user_path(user.id) %></td>
             <td></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <%= paginate @users %>
-  <%= image_tag 'line_sweets.png',size:'10,30' %>
 </div>
