@@ -19,17 +19,11 @@
               <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
             </div>
           </tr>
-        </div>
-      </div>
-    </table>
-    <table class ="table">
-      <div class ="row">
-        <div class = "col-6">
           <tr>
             <div class="field">
               <td><%= f.label :"パスワード" %>
                 <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em></td>
+                  <em>(<%= @minimum_password_length %> 文字以上 )</em></td>
                 <% end %><br />
               <td><%= f.password_field :password, autocomplete: "new-password" %></td>
             </div>

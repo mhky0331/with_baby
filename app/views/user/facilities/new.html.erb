@@ -1,7 +1,7 @@
 <div class='col-md-8'>
+  <h1>施設新規登録</h1>
   <div class='row'>
-    <h1>施設新規登録</h1>
-    <%= form_with model: @facilities, url :user_facilities_path, method: :post do |f| %>
+    <%= form_with model: @facilities, url: user_facilities_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :施設画像 %>
         <%= f.file_field :facility_photos, class: "form-control-file", accept: 'image/*' %>
@@ -11,7 +11,7 @@
         <%= f.text_field :name, class: 'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.label :施設説明 
+        <%= f.label :施設説明 %>
         <%= f.text_area :content, class: 'form-control' %>
       </div>
       <div class="form-group">

@@ -12,7 +12,7 @@ class User::UsersController < ApplicationController
     @user = current_user
       if @user.update(mypage_params)
          flash[:notice] = "会員情報を更新出来ました。"
-         redirect_to user_users_mypage_path
+         redirect_to user_user_path
       else
          render :edit
       end

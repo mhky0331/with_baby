@@ -1,6 +1,6 @@
 <div class='col-md-8'>
+  <h1>新規投稿</h1>
   <div class='row'>
-    <h1>新規投稿</h1>
     <%= form_with model: @posts, url:user_posts_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :投稿画像 %>
