@@ -12,6 +12,7 @@
           <tr>
             <td><%= post.id %></td>
             <td><%= post.content %></td>
+            <td>コメント数： <%= post.comments.count %></td>
           </tr>
         <% end %>
       </tbody>

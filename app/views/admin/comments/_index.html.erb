@@ -1,0 +1,26 @@
+  <h1>コメント一覧</h1>
+    <thead>
+      <tr>
+        <th>コメントID</th>
+        <th>投稿内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% comments.each do |comment| %>
+        <tr>
+          <td>
+            <%= link_to user_path(comment.user) do %>
+              <%= image_tag comment.user.get_profile_image, size: "50x50" %><br>
+              <%= comment.user.name %>
+            <% end %>
+          </td>
+          <td><%= comment.content %></td>
+          <td>
+            <% if comment.user == current_user %>
+              <%= link_to "削除", post_comment_path(post, comment), method: :delete, class: "btn btn-sm btn-danger float-end" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbod>
+  <%= paginate comments %>

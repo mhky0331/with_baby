@@ -1,10 +1,10 @@
 <div class="container">
   <div class='mx-auto col-md-3'>
     <h2>管理者ログイン</h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_with model: @admin, url: admin_session_path do |f| %>
       <div class="field">
-        <%= f.label :"メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.label :"名前" %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
       </div>
       <div class="field">
         <%= f.label :"パスワード" %><br />

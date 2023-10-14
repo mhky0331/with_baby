@@ -1,20 +1,5 @@
 <div class="container">
-  <h1>コメント一覧</h1>
     <table class='table table-hover table-inverse'>
-      <thead>
-        <tr>
-          <th>コメントID</th>
-          <th>投稿内容</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td><%= comment.id %></td>
-            <td><%= comment.content %></td>
-          </tr>
-        <% end %>
-      </tbody>
+      <%= render 'index', comments: @comments %>
     </table>
-  <%= paginate @comments %>
 </div>

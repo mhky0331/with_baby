@@ -9,6 +9,7 @@
         <tr>
           <td>投稿内容</td>
           <td><%= @posts.content %></td>
+          <td>コメント数： <%= @book.book_comments.count %></td>
         </tr>
       </table>
     </div>
@@ -19,4 +20,10 @@
 </div>
 <div class='text-center'>
   <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
+</div>
+<div class='text-center'>
+</div>
+<div class='text-center'>
+  <%= render 'comments/index', comments: @comments %>
+  <%= render "comments/form", post: @post, comment: @comment %>
 </div>
