@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   sessions: 'user/sessions'
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'user/sessions#guest_sign_in'
+  end
+
   scope module: :user do
     root to: 'homes#top'
   end
