@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2023_10_08_140242) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.string "content", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(version: 2023_10_08_140242) do
   end
 
   create_table "facilities", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "name", default: "", null: false
     t.text "content", default: "", null: false
     t.float "latitude", default: 0.0, null: false
@@ -75,16 +78,21 @@ ActiveRecord::Schema.define(version: 2023_10_08_140242) do
   end
 
   create_table "facility_equipments", force: :cascade do |t|
+    t.integer "facility_id", null: false
+    t.integer "equipment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "content", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

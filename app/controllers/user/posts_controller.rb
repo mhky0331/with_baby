@@ -3,11 +3,10 @@ class User::PostsController < ApplicationController
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
     @posts = Post.all.page(params[:page]).per(10)
-    @post = post.find(params[:id])
   end
 
   def show
-    @post = post.find(params[:id])
+    @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = Comment.all.page(params[:page]).per(10)
   end
