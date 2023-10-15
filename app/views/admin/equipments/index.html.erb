@@ -1,6 +1,6 @@
 <div class="container">
   <div class='mx-auto col-md-7'>
-    <h1>設備一覧・追加</h1>
+    <h1>設備一覧・追加/削除</h1>
     <%= form_with model: @equipment, url:'/admin/equipments', method: :post, local: true do |f| %>
       <div class="form-group">
         <%= f.label :"設備名" %>

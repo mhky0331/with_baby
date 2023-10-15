@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2023_10_08_140242) do
     t.integer "equipment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["equipment_id"], name: "index_facility_equipments_on_equipment_id"
+    t.index ["facility_id"], name: "index_facility_equipments_on_facility_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -113,4 +115,6 @@ ActiveRecord::Schema.define(version: 2023_10_08_140242) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "facility_equipments", "equipment"
+  add_foreign_key "facility_equipments", "facilities"
 end

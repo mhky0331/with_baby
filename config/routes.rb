@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   scope module: :user do
     root to: 'homes#top'
+    get "search" => "posts#search"
   end
 
   namespace :user do

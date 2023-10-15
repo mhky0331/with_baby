@@ -9,6 +9,12 @@
         <tr>
           <td>投稿内容</td>
           <td><%= @posts.content %></td>
+          <td>設備</td>
+          <td>
+            <% facility.equipments.each do |equipment| %>
+              <%= equipment.facility_equipments %>
+            <% end %>
+          </td>
           <td id="favorite_btn_<%= @post.id %>">
             <%= render "favorites/btn", post: @post %>
           </td>

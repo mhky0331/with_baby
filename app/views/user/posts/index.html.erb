@@ -1,10 +1,12 @@
 <div class="container">
+  <%= render "search", post: @post %>
   <h1>投稿一覧</h1>
     <table class='table table-hover table-inverse'>
       <thead>
         <tr>
           <th>投稿ID</th>
           <th>投稿内容</th>
+          <th>設備</th>
         </tr>
       </thead>
       <tbody>
@@ -12,6 +14,11 @@
           <tr>
             <td><%= post.id %></td>
             <td><%= post.content %></td>
+            <td>
+              <% facility.equipments.each do |equipment| %>
+                <%= equipment.facility_equipments %>
+              <% end %>
+            </td>
             <td id="favorite_btn_<%= post.id %>">
             <%= render "favorites/btn", post: post %>
             </td>
