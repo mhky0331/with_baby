@@ -46,7 +46,7 @@ class User::FacilitiesController < ApplicationController
   private
 
   def facility_params
-    params.require(:facility).permit(:user_id, :name, :content, :latitude, :longitude, :facility_image)
+    params.require(:facility).permit(:user_id, :name, :content, :latitude, :longitude, :facility_photos)
   end
 
 end

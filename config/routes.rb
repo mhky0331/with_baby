@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'maps/index'
+  root to: 'maps#index'
+  resources :maps, only: [:index]
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -27,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :user do
-    root to: 'homes#top'
+    # root to: 'homes#top'
     get "search" => "posts#search"
   end
 

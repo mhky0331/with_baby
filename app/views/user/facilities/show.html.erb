@@ -3,6 +3,7 @@
   <div class='row'>
     <div class='col-md-4'>
       <%= image_tag @facilities.facility_photos, size: '250x150' %>
+      <div id="map"></div>
     </div>
     <div class='col-md-6'>
       <table class="table">
@@ -35,3 +36,23 @@
 <div class='text-center'>
   <%= link_to "投稿する", new_user_posts_path, class: 'btn btn-success' %>
 </div>
+<style>
+  #map {
+    height: 400px;
+    width: 400px;
+  }
+</style>
+<script>
+  function initMap() {
+    var address = {lat: <%= @facility.latitude %>, lng: <%= @facility.longitude %>};
+    var map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 16,
+    center: address
+    });
+    var marker = new google.maps.Marker({
+      position: address,
+      map: map
+    });
+      }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLEMAP"] %>&callback=initMap"async defer></script>
