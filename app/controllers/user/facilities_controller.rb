@@ -1,5 +1,7 @@
 class User::FacilitiesController < ApplicationController
 
+before_action :ensure_user, only: [:edit, :update, :destroy]
+
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
     @facilities = Facility.all.page(params[:page]).per(10)
@@ -15,31 +17,28 @@ class User::FacilitiesController < ApplicationController
 
   def create
     @facility = Facility.new(facility_params)
-      if @facilities.save
+      if @facility.save
          redirect_to user_facilities_path(@facility.id)
       else
-         @facilities = Facility.all
+         @facility = Facility.all
          render :new
       end
   end
 
   def edit
-    @facility = Facility.find(params[:id])
   end
 
   def update
-    @facility = Facility.find(params[:id])
       if @facility.update(facility_params)
          redirect_to user_facilities_path(@facility.id)
       else
-         @facilities = Facility.all
          render :edit
       end
   end
 
   def destroy
-    @facility = Facility.find(params[:id])
     @facility.destroy
+    redirect_to user_facility_path
   end
 
 
@@ -47,6 +46,12 @@ class User::FacilitiesController < ApplicationController
 
   def facility_params
     params.require(:facility).permit(:user_id, :name, :content, :latitude, :longitude, :facility_photos)
+  end
+
+  def ensure_user
+    @facilities = current_user.facilities
+    @facility = @facilities.find_by(id: params[:id])
+    redirect_to user_facilities_path(@facility.id) unless @facility
   end
 
 end

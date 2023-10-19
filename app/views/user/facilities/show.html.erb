@@ -27,12 +27,17 @@
     </div>
   </div>
 </div>
-<div class='text-center'>
-  <%= link_to "編集する", edit_user_facilities_path, class: 'btn btn-success' %>
-</div>
-<div class='text-center'>
-  <%= link_to '削除する', @facility, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
-</div>
+<% if facility.user == current_user %>
+  <div class='text-center'>
+    <%= link_to "編集する", edit_user_facilities_path, class: 'btn btn-success' %>
+  </div>
+  <div class='text-center'>
+    <%= link_to '削除する', @facility, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
+  </div>
+<% else %>
+  <div></div>
+  <div></div>
+<% end %>
 <div class='text-center'>
   <%= link_to "投稿する", new_user_posts_path, class: 'btn btn-success' %>
 </div>
@@ -55,4 +60,4 @@
     });
       }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLEMAP"] %>&callback=initMap"async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap"async defer></script>
