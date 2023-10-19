@@ -15,7 +15,7 @@ class User::FacilitiesController < ApplicationController
 
   def create
     @facility = Facility.new(facility_params)
-      if @facility.save
+      if @facilities.save
          redirect_to user_facilities_path(@facility.id)
       else
          @facilities = Facility.all
