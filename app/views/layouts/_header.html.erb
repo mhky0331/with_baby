@@ -8,11 +8,6 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
-        <!--ゲストログイン時-->
-        <%= link_to users_guest_sign_in_path, class: "nav-link", method: :post  do %>
-          <i class="fas fa-home"></i> ゲストログイン
-        <% end %>
-
         <% if user_signed_in? %>
           <!--会員ログイン時-->
           <div class="d-flex align-items-end" style="height:50px;">
@@ -37,6 +32,7 @@
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
+            <%= render "user/posts/search", post: @post %>
           </li>
 
         <% elsif admin_signed_in? %>
@@ -74,6 +70,9 @@
 
         <% else %>
           <!--ログインしていない時-->
+          <%= link_to users_guest_sign_in_path, class: "nav-link", method: :post  do %>
+            <i class="fas fa-home"></i> ゲストログイン
+          <% end %>
           <li>
             <%= link_to user_facilities_path, class: 'nav-link text-light' do %>
               <i class="fas fa-home"></i> 施設一覧
@@ -93,9 +92,9 @@
             <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
               <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
+            <%= render "user/posts/search", post: @post %>
           </li>
         <% end %>
-        <%= render "user/posts/search", post: @post %>
         </ul>
       </div>
     </div>

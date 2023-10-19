@@ -15,7 +15,7 @@
             <td><%= post.id %></td>
             <td><%= post.content %></td>
             <td>
-              <% facility.equipments.each do |equipment| %>
+              <% post.facility.equipments.each do |equipment| %>
                 <%= equipment.facility_equipments %>
               <% end %>
             </td>

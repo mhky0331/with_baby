@@ -8,7 +8,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   end
 
   def show
-    @facility = facility.find(params[:id])
+    @facility = Facility.find(params[:id])
   end
 
   def new
@@ -17,6 +17,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def create
     @facility = Facility.new(facility_params)
+    @facility.user_id =current_user.id
       if @facility.save
          redirect_to user_facilities_path(@facility.id)
       else

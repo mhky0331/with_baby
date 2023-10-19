@@ -10,7 +10,7 @@
     </div>
 
       <%= select_tag :equipment_id,
-        options_from_collection_for_select(Equipment.all, :id, :facility_equipments, params[:equipment_id]),
+        options_from_collection_for_select(Equipment.all, :id, :name, params[:equipment_id]),
           {
             prompt: "タグで絞り込み検索",
             onchange: "submit(this.form);"

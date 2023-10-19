@@ -2,26 +2,26 @@
   <h1>施設詳細</h1>
   <div class='row'>
     <div class='col-md-4'>
-      <%= image_tag @facilities.facility_photos, size: '250x150' %>
+      <%= image_tag @facility.facility_photos, size: '250x150' %>
       <div id="map"></div>
     </div>
     <div class='col-md-6'>
       <table class="table">
         <tr>
           <td>施設名</td>
-          <td><%= @facilities.name %></td>
+          <td><%= @facility.name %></td>
         </tr>
         <tr>
           <td>施設説明</td>
-          <td><%= @facilities.content %></td>
+          <td><%= @facility.content %></td>
         </tr>
         <tr>
           <td>緯度</td>
-          <td><%= @facilities.latitude %></td>
+          <td><%= @facility.latitude %></td>
         </tr>
         <tr>
           <td>経度</td>
-          <td><%= @facilities.longitude %></td>
+          <td><%= @facility.longitude %></td>
         </tr>
       </table>
     </div>

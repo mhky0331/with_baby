@@ -14,7 +14,7 @@
         <% @facilities.each do |facility| %>
           <tr>
             <td><%= facility.id %></td>
-            <td><%= link_to facilities.name, user_facilities_path(facility.id) %></td>
+            <td><%= link_to facility.name, user_facility_path(facility.id) %></td>
           </tr>
         <% end %>
       </tbody>

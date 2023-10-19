@@ -9,7 +9,7 @@ class Facility < ApplicationRecord
 
   validates :name, :content, :latitude, :longitude, :facility_photos, presence: true
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  # geocoded_by :address
+  # after_validation :geocode, if: :address_changed?
 
 end

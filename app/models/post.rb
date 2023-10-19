@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   validates :content, presence: true
 
   def self.search(keyword)
-    where("facility_name LIKE ?", "%#{keyword}%")
+    where("facility.name LIKE ?", "%#{keyword}%")
   end
 
 end
