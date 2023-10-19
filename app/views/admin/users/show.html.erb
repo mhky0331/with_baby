@@ -2,7 +2,11 @@
   <h1>会員詳細</h1>
   <div class='row'>
     <div class='col-md-4'>
-      <%= image_tag @user.profile_image, size: '250x150' %>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.profile_image, size: '250x150' %>
+      <% else %>
+        <%= image_tag 'user_no_image', size: "250x150" %>
+      <% end %>
     </div>
     <div class='col-md-6'>
       <table class="table">

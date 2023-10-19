@@ -2,7 +2,11 @@
   <h1>施設詳細</h1>
   <div class='row'>
     <div class='col-md-4'>
-      <%= image_tag @facility.facility_photos, size: '250x150' %>
+      <% if @facility.image.attached? %>
+        <%= image_tag @facility.facility_photos, size: '250x150' %>
+      <% else %>
+        <%= image_tag 'no_image', size: "250x150" %>
+      <% end %>
       <div id="map"></div>
     </div>
     <div class='col-md-6'>

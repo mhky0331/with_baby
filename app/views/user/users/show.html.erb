@@ -1,8 +1,25 @@
 <div class="container">
   <div class = "row">
+    <div class = "col-lg-8">
+      <table class="table table-bordered">
+        <h4><b>会員情報</b></h4>
+        <% if @user.image.attached? %>
+          <%= image_tag @user.profile_image, size: '250x150' %>
+        <% else %>
+          <%= image_tag 'no_image', size: "250x150" %>
+        <% end %>
+        <tr>
+          <td>名前</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+    </div>
     <div class ="col-lg-4">
       <div class="d-flex align-items-end" style="height:50px;">
-        <h4><b>会員情報</b></h4>
       </div>
       <%= link_to "会員情報編集", edit_user_user_path, class: 'btn btn-success'%>
       <table>
@@ -21,18 +38,6 @@
         <tr>
           <td>お気に入り一覧</td>
           <td><%= link_to "一覧を見る", user_favorites_path, class: 'btn btn-info' %></td>
-        </tr>
-      </table>
-    </div>
-    <div class = "col-lg-8">
-      <table class="table table-bordered">
-        <tr>
-          <td>名前</td>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= @user.email %></td>
         </tr>
       </table>
     </div>
