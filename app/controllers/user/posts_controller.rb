@@ -2,8 +2,11 @@ class User::PostsController < ApplicationController
 
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
-    @posts = Post.all.page(params[:page]).per(10)
-    @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).facilities : Facility.all
+    if params[:all]
+      @posts = Post.all.page(params[:page]).per(10)
+    else
+      @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).facilities : Facility.all
+    end
     if params[:keyword]
       @posts = @posts.search(params[:keyword]).page(params[:page])
     else

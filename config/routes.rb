@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'maps/index'
-  root to: 'maps#index'
-  resources :maps, only: [:index]
-
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -31,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :user do
-    # root to: 'homes#top'
+    root to: 'homes#top'
     get "search" => "posts#search"
   end
 
@@ -42,6 +38,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
   end
-
+  
+  #地図機能実装
+  get 'maps/index'
+  #root to: 'maps#index'
+  resources :maps, only: [:index]
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
