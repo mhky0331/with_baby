@@ -2,6 +2,8 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :facility
+  has_many :post_equipments, dependent: :destroy
+  has_many :equipments, through: :post_equipments
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

@@ -37,9 +37,10 @@ Rails.application.routes.draw do
     resources :facilities do
       resources :posts, only: [:new, :create]
     end
-    resources :posts, exist: [:new, :create]
+    resources :posts, exist: [:new, :create] do
+      resources :comments, only: [:index, :create, :destroy]
+    end
 
-    resources :comments, only: [:index, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
   end
 

@@ -22,6 +22,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   end
 
   def show
+    
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = Comment.all.page(params[:page]).per(10)
@@ -36,10 +37,15 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.facility_id = Facility.find(params[:facility_id]).id
+    equipment_ids = params[:equipment_ids].compact_blank
+    equipment_ids.each {|id| @post.post_equipments.build(equipment_id: id) }
+    byebug
       if @post.save
          redirect_to user_post_path(@post.id)
       else
          @posts = Post.all
+         @post = Post.new
+         @facility = Facility.find(params[:facility_id])
          render :new
       end
   end
