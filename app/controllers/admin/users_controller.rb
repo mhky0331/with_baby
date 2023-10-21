@@ -19,6 +19,17 @@ class Admin::UsersController < ApplicationController
       end
   end
 
+  def withdrawal
+     @user = User.find(params[:id])
+     @user.update(is_active: !@user.is_active)
+    if @user.is_active
+      flash[:notice] = "利用停止中に変更します"
+    else
+      flash[:notice] = "利用中に変更します"
+    end
+    redirect_to admin_users_path
+  end
+
  private
 
  def user_params

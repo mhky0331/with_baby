@@ -29,12 +29,15 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
+    @facility = Facility.find(params[:facility_id])
   end
 
   def create
-    @posts = Post.new(post_params)
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.facility_id = Facility.find(params[:facility_id]).id
       if @post.save
-         redirect_to user_posts_path(@post.id)
+         redirect_to user_post_path(@post.id)
       else
          @posts = Post.all
          render :new
@@ -45,7 +48,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   end
 
   def update
-      if @post.update(post_params)
+      if @post.update(post_update_params)
          redirect_to user_posts_path(@post.id)
       else
          render :edit
@@ -60,8 +63,12 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
 
   private
 
-  def post_params
+  def post_update_params
     params.require(:post).permit(:user_id, :content, :equipment, :posted_photos)
+  end
+
+  def post_params
+    params.permit(:user_id, :content, :equipment, :posted_photos)
   end
 
   def ensure_user

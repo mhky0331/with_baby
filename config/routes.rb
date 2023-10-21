@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
     resources :equipments, only: [:index, :create, :edit, :update, :destroy]
+    patch "withdrawal/:id" => "users#withdrawal", as: "withdrawal"
   end
 
   # 会員用
@@ -33,16 +34,19 @@ Rails.application.routes.draw do
 
   namespace :user do
     resource :user, only: [:show, :edit, :update]
-    resources :facilities
-    resources :posts
+    resources :facilities do
+      resources :posts, only: [:new, :create]
+    end
+    resources :posts, exist: [:new, :create]
+
     resources :comments, only: [:index, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
   end
-  
+
   #地図機能実装
   get 'maps/index'
   #root to: 'maps#index'
   resources :maps, only: [:index]
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

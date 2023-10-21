@@ -32,8 +32,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      ## 名前を保存するカラム
+      # 名前を保存するカラム
       t.string :name
+
+      # 会員が利用中か保存するカラム
+      t.boolean "is_active", default: false, null: false
 
       t.timestamps null: false
     end

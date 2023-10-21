@@ -21,7 +21,11 @@
     <div class ="col-lg-4">
       <div class="d-flex align-items-end" style="height:50px;">
       </div>
-      <%= link_to "会員情報編集", edit_user_user_path, class: 'btn btn-success'%>
+      <% if @user.email == 'guest@example.com'%>
+      　<p>ゲストユーザーはユーザー情報の編集ができません。</p>
+      <% else %>
+        <%= link_to "会員情報編集", edit_user_user_path, class: 'btn btn-success'%>
+      <% end %>
       <table>
         <tr>
           <td>施設一覧</td>

@@ -31,7 +31,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def update
       if @facility.update(facility_params)
-         redirect_to user_facilities_path(@facility.id)
+         redirect_to user_facility_path(@facility.id)
       else
          render :edit
       end
@@ -39,7 +39,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def destroy
     @facility.destroy
-    redirect_to user_facility_path
+    redirect_to user_facilities_path
   end
 
 

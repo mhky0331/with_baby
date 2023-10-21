@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 
-  belongs_to :user, optional: true
-  belongs_to :facility, optional: true
+  belongs_to :user
+  belongs_to :facility
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -13,4 +13,7 @@ class Post < ApplicationRecord
     where("facility.name LIKE ?", "%#{keyword}%")
   end
 
+  def favorited_by?(current_user)
+    favorites.exists?(user_id: current_user.id)
+  end
 end

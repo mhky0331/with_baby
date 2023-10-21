@@ -1,7 +1,7 @@
 <div class="container">
   <div class='mx-auto col-md-7'>
     <h1>施設編集</h1>
-    <%= form_with model: @facilities, url :admin_facilities_path(@facilities), method: :patch, local: true do |f| %>
+    <%= form_with model: @facilities, url:admin_facilities_path(@facilities), method: :patch, local: true do |f| %>
       <div class="form-group">
         <%= f.label :施設画像 %>
         <%= f.file_field :facility_photos, class: "form-control-file", accept: 'image/*' %>

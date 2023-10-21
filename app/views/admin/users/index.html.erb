@@ -5,15 +5,20 @@
         <tr>
           <th>会員ID</th>
           <th>会員名</th>
-          <th>利用中</th>
+          <th>ステータス</th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= link_to @users.name,admin_user_path(user.id) %></td>
-            <td></td>
+            <td><%= link_to user.name,admin_user_path(user.id) %></td>
+            <td><% if user.is_active %>
+                  利用停止中
+                <% else %>
+                  利用中
+                <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
