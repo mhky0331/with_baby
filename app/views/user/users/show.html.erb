@@ -3,10 +3,10 @@
     <div class = "col-lg-8">
       <table class="table table-bordered">
         <h4><b>会員情報</b></h4>
-        <% if @user.image.attached? %>
+        <% if @user.profile_image.attached? %>
           <%= image_tag @user.profile_image, size: '250x150' %>
         <% else %>
-          <%= image_tag 'no_image', size: "250x150" %>
+          <%= image_tag 'user_no_image', size: "250x150" %>
         <% end %>
         <tr>
           <td>名前</td>

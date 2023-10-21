@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  has_many_attached :posted_photo
+  has_many_attached :posted_photos
 
   validates :content, presence: true
 

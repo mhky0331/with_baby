@@ -2,8 +2,8 @@
   <h1>施設詳細</h1>
   <div class='row'>
     <div class='col-md-4'>
-      <% if @facility.image.attached? %>
-        <%= image_tag @facility.facility_photos, size: '250x150' %>
+      <% if @facility.facility_photos.attached? %>
+        <%= image_tag @facility.facility_photos[0], size: '250x150' %>
       <% else %>
         <%= image_tag 'no_image', size: "250x150" %>
       <% end %>
@@ -31,7 +31,7 @@
     </div>
   </div>
 </div>
-<% if facility.user == current_user %>
+<% if @facility.user == current_user %>
   <div class='text-center'>
     <%= link_to "編集する", edit_user_facilities_path, class: 'btn btn-success' %>
   </div>
@@ -43,7 +43,7 @@
   <div></div>
 <% end %>
 <div class='text-center'>
-  <%= link_to "投稿する", new_user_posts_path, class: 'btn btn-success' %>
+  <%= link_to "投稿する", new_user_post_path, class: 'btn btn-success' %>
 </div>
 <style>
   #map {
