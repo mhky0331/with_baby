@@ -1,11 +1,11 @@
-<% if post.favorited_by?(current_user) %>
-  <%#= link_to post_favorites_path(post), method: :delete, remote: true do %>
+<% if facility.favorited_by?(current_user) %>
+  <%= link_to user_facility_favorite_path(facility), method: :delete, remote: true, data: {"turbolinks" => false} do %>
     <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%#= post.favorites.count %> お気に入り
-  <%# end %>
+    <%= facility.favorites.count %> お気に入り
+  <% end %>
 <% else %>
-  <%#= link_to post_favorites_path(post), method: :post, remote: true do %>
+  <%= link_to user_facility_favorites_path(facility), method: :post, remote: true, data: {"turbolinks" => false} do %>
     <i class="fas fa-heart" aria-hidden="true"></i>
-    <%#= post.favorites.count %> お気に入り
-  <%# end %>
+    <%= facility.favorites.count %> お気に入り
+  <% end %>
 <% end %>

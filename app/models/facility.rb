@@ -1,14 +1,17 @@
 class Facility < ApplicationRecord
 
-  belongs_to :user, optional: true
+  belongs_to :user
   has_many :posts, dependent: :destroy
-  has_many :facility_equipments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
-  has_many :equipments, through: :facility_equipments
 
   has_many_attached :facility_photos
 
   validates :name, :content, :latitude, :longitude, :facility_photos, presence: true
+
+  def favorited_by?(current_user)
+    favorites.exists?(user_id: current_user.id)
+  end
 
   # geocoded_by :address
   # after_validation :geocode, if: :address_changed?

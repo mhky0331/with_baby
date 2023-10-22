@@ -36,12 +36,11 @@ Rails.application.routes.draw do
     resource :user, only: [:show, :edit, :update]
     resources :facilities do
       resources :posts, only: [:new, :create]
+      resources :favorites, only: [:index, :create, :destroy]
     end
     resources :posts, exist: [:new, :create] do
       resources :comments, only: [:index, :create, :destroy]
     end
-
-    resources :favorites, only: [:index, :create, :destroy]
   end
 
   #地図機能実装

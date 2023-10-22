@@ -5,6 +5,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
     @facilities = Facility.all.page(params[:page]).per(10)
+    @facility = Facility.find(params[:facility_id])
   end
 
   def show

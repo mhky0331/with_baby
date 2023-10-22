@@ -32,6 +32,9 @@
   </div>
 </div>
 <% if @facility.user == current_user %>
+  <td id="favorite_buttons_<%= @facility.id %>" >
+    <%= render "favorites/btn", facility: @facility %>
+  </td>
   <div class='text-center'>
     <%= link_to "編集する", edit_user_facility_path, class: 'btn btn-success' %>
   </div>
