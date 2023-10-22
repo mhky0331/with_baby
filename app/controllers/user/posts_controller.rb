@@ -71,7 +71,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   end
 
   def post_params
-    params.permit(:user_id, :content, :equipment, :posted_photos)
+    params.permit(:user_id, :content, :equipment, posted_photos: [])
   end
 
   def ensure_user

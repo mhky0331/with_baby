@@ -75,3 +75,5 @@ gem "net-pop"
 gem "net-imap"
 
 gem 'jquery-rails'
+
+gem 'image_processing', '~> 1.2'

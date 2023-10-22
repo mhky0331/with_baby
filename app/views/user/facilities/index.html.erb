@@ -11,15 +11,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <% @facilities.each do |facility| %>
+        <% @facilities.each do |facility| %>
+          <tr>
             <td><%= facility.id %></td>
             <td><%= link_to facility.name, user_facility_path(facility.id) %></td>
             <td id="favorite_buttons_<%= facility.id %>">
               <%= render "user/favorites/btn", { facility: facility } %>
             </td>
-          <% end %>
-        </tr>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   <%= paginate @facilities, theme: 'twitter-bootstrap-4' %>

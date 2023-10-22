@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   end
 
   #地図機能実装
-  resources :maps, only: [:index, :new]
+  resources :maps, only: [:index, :show, :new]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -7,7 +7,6 @@
       <% else %>
         <%= image_tag 'no_image', size: "250x150" %>
       <% end %>
-      <div id="map"></div>
     </div>
     <div class='col-md-6'>
       <table class="table">
@@ -48,28 +47,33 @@
 <div class='text-center'>
   <%= link_to "投稿する", new_user_facility_post_path(@facility), class: 'btn btn-success' %>
 </div>
-<div id="map"></div>
+<div class="container">
+  <h1>投稿一覧</h1>
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>投稿ID</th>
+        <th>施設名</th>
+        <th>投稿内容</th>
+        <th>設備</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+          <td><%= link_to post.facility.name, user_facility_path(post.facility.id) %></td>
+          <td><%= post.content %></td>
+          <td>
+            <% post.equipments.each do |equipment| %>
+              <%= equipment.name %>
+            <% end %>
+          </td>
+          <td>コメント数： <%= post.comments.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<% if @map.present? %>
-<script>
- if (typeof map == "undefined") {
-   let map
-   let marker
- }
-
- function initMap(){
-   geocoder = new google.maps.Geocoder()
-
-   map = new google.maps.Map(document.getElementById('map'), {
-     center: { lat: <%= @map.latitude %>, lng: <%= @map.longitude %> },
-     zoom: 10,
-   });
-
-   marker = new google.maps.Marker({
-     position:  { lat: <%= @map.latitude %>, lng: <%= @map.longitude %> },
-     map: map
-   });
- }
- </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-<% end %>
+    <%= render "maps/show", map: @map %>

@@ -21,7 +21,7 @@ class User::UsersController < ApplicationController
   private
 
   def mypage_params
-    params.require(:user).permit(:name, :email, :profile_image)
+    params.require(:user).permit(:name, :email, profile_image: [])
   end
 
 end

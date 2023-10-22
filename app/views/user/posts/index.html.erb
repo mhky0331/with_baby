@@ -13,7 +13,7 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <td><%= post.id %></td>
+            <td><%= link_to post.id, user_post_path(post.id) %></td>
             <td><%= link_to post.facility.name, user_facility_path(post.facility.id) %></td>
             <td><%= post.content %></td>
             <td>
