@@ -5,6 +5,7 @@
       <thead>
         <tr>
           <th>投稿ID</th>
+          <th>施設名</th>
           <th>投稿内容</th>
           <th>設備</th>
         </tr>
@@ -13,10 +14,11 @@
         <% @posts.each do |post| %>
           <tr>
             <td><%= post.id %></td>
+            <td><%= link_to post.facility.name, user_facility_path(post.facility.id) %></td>
             <td><%= post.content %></td>
             <td>
               <% post.equipments.each do |equipment| %>
-                <%= equipment.post_equipments %>
+                <%= equipment.name %>
               <% end %>
             </td>
             <td>コメント数： <%= post.comments.count %></td>

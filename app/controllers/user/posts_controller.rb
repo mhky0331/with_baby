@@ -7,7 +7,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
     if params[:all]
       @posts = Post.all.page(params[:page]).per(10)
     else
-      @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).facilities : Facility.all
+      @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).posts.page(params[:page]) : Post.all
     end
     if params[:keyword] != ""
       if @facility = Facility.find_by(name:params[:keyword])
@@ -15,8 +15,6 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
       else
         @posts = Post.page(params[:page])
       end
-    else
-      @posts = Post.page(params[:page])
     end
     @keyword = params[:keyword]
   end

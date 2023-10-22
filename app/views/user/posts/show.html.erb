@@ -16,7 +16,7 @@
           <td>設備</td>
           <td>
             <% @post.equipments.each do |equipment| %>
-              <%= equipment.facility_equipments %>
+              <%= equipment.name %>
             <% end %>
           </td>
           <td>コメント数： <%= @post.comments.count %></td>

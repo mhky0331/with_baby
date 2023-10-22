@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
+    resources :comments, only: [:index]
+    resources :favorites, only: [:index]
     resource :user, only: [:show, :edit, :update]
     resources :facilities do
       resources :posts, only: [:new, :create]
@@ -44,9 +46,7 @@ Rails.application.routes.draw do
   end
 
   #地図機能実装
-  get 'maps/index'
-  #root to: 'maps#index'
-  resources :maps, only: [:index]
+  resources :maps, only: [:index, :new]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
