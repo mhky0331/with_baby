@@ -1,102 +1,105 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/"><span>WithBaby</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-
-        <% if user_signed_in? %>
-          <!--会員ログイン時-->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
+    <a class="navbar-brand" href="#"><img src="/assets/favicon.ico" width="50" height="50" alt="">WithBaby</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if user_signed_in? %>
+      <!--会員ログイン時-->
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <div class="d-flex align-items-end" style="height:50px;">
             <li>ようこそ、<%= current_user.name %>さん！</li>
           </div>
-          <li>
-            <%= link_to user_user_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> マイページ
+          <li class="nav-item active">
+            <%= link_to user_user_path, class: 'nav-link' do %>
+              <i class="far fa-user"></i> マイページ
             <% end %>
           </li>
-          <li>
-            <%=  link_to user_facilities_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> 施設一覧
+          <li class="nav-item">
+            <%=  link_to user_facilities_path, class: 'nav-link' do %>
+              <i class="fas fa-store-alt"></i> 施設一覧
             <% end %>
           </li>
-          <li>
-            <%=  link_to user_posts_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> 投稿一覧
+          <li class="nav-item">
+            <%=  link_to user_posts_path, class: 'nav-link' do %>
+              <i class="fas fa-pencil-alt"></i> 投稿一覧
             <% end %>
           </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> ログアウト
-            <% end %>
-            <%= render "user/posts/search", post: @post %>
-          </li>
-
-        <% elsif admin_signed_in? %>
-          <!--管理者ログイン時-->
-          <li>
-            <%= link_to admin_users_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> 会員一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_facilities_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> 施設一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_equipments_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> 設備一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_posts_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> 投稿一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_comments_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-out-alt"></i> コメント一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link' do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
-
-        <% else %>
-          <!--ログインしていない時-->
+        </ul>
+        <%= render "user/posts/search", post: @post %>
+      </div>
+    <% elsif admin_signed_in? %>
+      <!--管理者ログイン時-->
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <%= link_to admin_users_path, class: 'nav-link' do %>
+              <i class="fas fa-users"></i> 会員一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_facilities_path, class: 'nav-link' do %>
+              <i class="fas fa-store-alt"></i> 施設一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_equipments_path, class: 'nav-link' do %>
+              <i class="fas fa-baby"></i> 設備一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_posts_path, class: 'nav-link' do %>
+              <i class="fas fa-pencil-alt"></i> 投稿一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_comments_path, class: 'nav-link' do %>
+              <i class="far fa-comment-alt"></i> コメント一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <!--ログインしていない時-->
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <%= link_to users_guest_sign_in_path, class: "nav-link", method: :post  do %>
-            <i class="fas fa-home"></i> ゲストログイン
+            <i class="fas fa-user"></i> ゲストログイン
           <% end %>
-          <li>
-            <%= link_to user_facilities_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-home"></i> 施設一覧
+          <li class="nav-item">
+            <%= link_to user_facilities_path, class: 'nav-link' do %>
+              <i class="fas fa-store-alt"></i> 施設一覧
             <% end %>
           </li>
-          <li>
-            <%= link_to user_posts_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-link"></i> 投稿一覧
+          <li class="nav-item">
+            <%= link_to user_posts_path, class: 'nav-link' do %>
+              <i class="fas fa-pencil-alt"></i> 投稿一覧
             <% end %>
           </li>
-          <li>
-            <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path, class: 'nav-link' do %>
               <i class="fas fa-user-plus"></i> 新規登録
             <% end %>
           </li>
-          <li>
-            <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-in-alt"></i> ログイン
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: 'nav-link' do %>
+          <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
-            <%= render "user/posts/search", post: @post %>
           </li>
-        <% end %>
         </ul>
+        <%= render "user/posts/search", post: @post %>
       </div>
-    </div>
+    <% end %>
   </nav>
 </header>
