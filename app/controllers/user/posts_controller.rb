@@ -20,8 +20,8 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   end
 
   def show
-
     @post = Post.find(params[:id])
+    @facility = Facility.where('post_id = ? ',params[:id])
     @comment = Comment.new
     @comments = Comment.all.page(params[:page]).per(10)
   end

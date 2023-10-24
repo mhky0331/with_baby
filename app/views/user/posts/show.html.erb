@@ -11,15 +11,20 @@
     <div class='col-md-6'>
       <table class="table">
         <tr>
-          <td>投稿内容</td>
+          <td>施設名</td>
+          <td><%= @post.facility.name %></td>
+        </tr>
+        <tr>
+          <td>内容</td>
           <td><%= @post.content %></td>
+        </tr>
+        <tr>
           <td>設備</td>
           <td>
             <% @post.equipments.each do |equipment| %>
               <%= equipment.name %>
             <% end %>
           </td>
-          <td>コメント数： <%= @post.comments.count %></td>
         </tr>
       </table>
     </div>
@@ -39,6 +44,11 @@
 <div class='text-center'>
 </div>
 <div class='text-center'>
-  <%= render "user/comments/form",   post: @post, comment: @comment %>
-  <%= render 'user/comments/index', comments: @comments %>
+  <td>コメント件数:<span id="comment_count"><%= @post.comments.count %></span></td>
+  <div id="comment-form">
+    <%= render "user/comments/form", post: @post, comment: @comment %>
+  </div>
+  <div id="comments">
+    <%= render 'user/comments/index', comments: @comments %>
+  </div>
 </div>
