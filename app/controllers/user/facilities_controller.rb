@@ -10,7 +10,6 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   def show
     @facility = Facility.find(params[:id])
     @posts = Post.where('facility_id = ? ',params[:id])
-    @map = Map.where(lat: @facility.lat).where(lng: @facility.lng)
   end
 
   def new

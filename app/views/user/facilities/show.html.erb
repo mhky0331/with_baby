@@ -20,11 +20,14 @@
         </tr>
         <tr>
           <td>緯度</td>
-          <td><%= @facility.latitude %></td>
+          <td><%= @facility.lat %></td>
         </tr>
         <tr>
           <td>経度</td>
-          <td><%= @facility.longitude %></td>
+          <td><%= @facility.lng %></td>
+        </tr>
+        <tr>
+          <td><div id='map'></div></td>
         </tr>
       </table>
     </div>
@@ -76,27 +79,30 @@
   </table>
 </div>
 
-<% if @map.present? %>
-  <div id="map"></div>
-  <script>
-   if (typeof map == "undefined") {
-     let map
-     let marker
-   }
+<style>
+#map {
+  height: 300px;
+  width: 300%;
+}
+</style>
 
-   function initMap(){
-     geocoder = new google.maps.Geocoder()
+<!-- js部分 -->
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
 
-     map = new google.maps.Facility(document.getElementById('map'), {
-       center: { lat: <%= @map.lat %>, lng: <%= @map.lng %> },
-       zoom: 10,
-     });
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @facility.lat %>, lng: <%= @facility.lng %>},
+    zoom: 15,
+  });
 
-     marker = new google.maps.Marker({
-       position:  { lat: <%= @map.lat %>, lng: <%= @map.lng %> },
-       map: map
-     });
-   }
-   </script>
+   marker = new google.maps.Marker({
+    position:  {lat: <%= @facility.lat %>, lng: <%= @facility.lng %>},
+    map: map
+  });
+}
+</script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-<% end %>
