@@ -1,9 +1,10 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
-    <a class="navbar-brand" href="#"><img src="/assets/favicon.ico" width="50" height="50" alt="">WithBaby</a>
+    <a class="navbar-brand" href="/"><img src="/assets/favicon.ico" width="50" height="50" alt="">WithBaby</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <% if user_signed_in? %>
       <!--会員ログイン時-->
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -11,7 +12,7 @@
           <div class="d-flex align-items-end" style="height:50px;">
             <li>ようこそ、<%= current_user.name %>さん！</li>
           </div>
-          <li class="nav-item active">
+          <li class="nav-item">
             <%= link_to user_user_path, class: 'nav-link' do %>
               <i class="far fa-user"></i> マイページ
             <% end %>
@@ -38,6 +39,11 @@
       <!--管理者ログイン時-->
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <%= link_to admin_root_path, class: 'nav-link' do %>
+              <i class="fas fa-user-cog"></i> 管理者TOP
+            <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to admin_users_path, class: 'nav-link' do %>
               <i class="fas fa-users"></i> 会員一覧

@@ -10,7 +10,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   def show
     @facility = Facility.find(params[:id])
     @posts = Post.where('facility_id = ? ',params[:id])
-    @map = Map.where(latitude: @facility.latitude).where(longitude: @facility.longitude)
+    @map = Map.where(lat: @facility.lat).where(lng: @facility.lng)
   end
 
   def new
@@ -48,7 +48,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   private
 
   def facility_params
-    params.require(:facility).permit(:user_id, :name, :content, :latitude, :longitude, :facility_photos)
+    params.require(:facility).permit(:user_id, :name, :content, :lat, :lng, :facility_photos)
   end
 
   def ensure_user

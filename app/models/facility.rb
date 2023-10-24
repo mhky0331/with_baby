@@ -7,7 +7,7 @@ class Facility < ApplicationRecord
 
   has_many_attached :facility_photos
 
-  validates :name, :content, :latitude, :longitude, :facility_photos, presence: true
+  validates :name, :content, :lat, :lng, :facility_photos, presence: true
 
   def favorited_by?(current_user)
     favorites.exists?(user_id: current_user.id)

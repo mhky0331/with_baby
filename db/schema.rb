@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2023_10_22_093258) do
     t.integer "user_id", null: false
     t.string "name", default: "", null: false
     t.text "content", default: "", null: false
-    t.float "latitude", default: 0.0, null: false
-    t.float "longitude", default: 0.0, null: false
+    t.float "lat", default: 0.0, null: false
+    t.float "lng", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
