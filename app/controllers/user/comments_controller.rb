@@ -15,6 +15,7 @@ class User::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:post_id])
     @comment.destroy
+    @post = Post.find(params[:post_id])
   end
 
   private
