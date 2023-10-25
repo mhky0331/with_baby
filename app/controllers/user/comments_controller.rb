@@ -6,21 +6,25 @@ class User::CommentsController < ApplicationController
   end
 
   def create
-    post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
-    @comment.post_id = post.id
+    @comment.post_id = @post.id
     @comment.save
+
+    @comments = @post.comments.page(params[:page]).per(10)
+    respond_to :js
   end
 
   def destroy
-    @comment = Comment.find(params[:post_id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     @post = Post.find(params[:post_id])
+    @comments = @post.comments.page(params[:page]).per(10)
   end
 
   private
 
   def comment_params
-    params.permit(:user_id, :post_id, :content)
+    params.require(:comment).permit(:user_id, :post_id, :content)
   end
 end
