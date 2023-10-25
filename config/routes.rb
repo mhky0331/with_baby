@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do t
 
   # 管理者用
   # URL /admin/sign_in ...
