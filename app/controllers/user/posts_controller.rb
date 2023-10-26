@@ -1,6 +1,6 @@
 class User::PostsController < ApplicationController
 
-before_action :ensure_user, only: [:edit, :update, :destroy]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
@@ -37,25 +37,31 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
     @post.facility_id = Facility.find(params[:facility_id]).id
     equipment_ids = params[:equipment_ids].compact_blank
     equipment_ids.each {|id| @post.post_equipments.build(equipment_id: id) }
-      if @post.save
-         redirect_to user_post_path(@post.id)
-      else
-         @posts = Post.all
-         @post = Post.new
-         @facility = Facility.find(params[:facility_id])
-         render :new
-      end
+    if @post.save
+       redirect_to user_post_path(@post.id)
+    else
+       @posts = Post.all
+       @post = Post.new
+       @facility = Facility.find(params[:facility_id])
+       render :new
+    end
   end
 
   def edit
   end
 
   def update
-      if @post.update(post_update_params)
-         redirect_to user_posts_path(@post.id)
-      else
-         render :edit
+    if params[:post][:posted_photos_ids]
+      params[:post][:posted_photos_ids].each do |posted_photos_id|
+        posted_photos = @post.posted_photos.find(posted_photos_id)
+        posted_photos.purge
       end
+    end
+    if @post.update(post_update_params)
+       redirect_to user_posts_path(@post.id)
+    else
+       render :edit
+    end
   end
 
   def destroy
@@ -67,7 +73,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   private
 
   def post_update_params
-    params.require(:post).permit(:user_id, :content, :equipment, :posted_photos)
+    params.require(:post).permit(:user_id, :content, equipment_ids: [], posted_photos: [])
   end
 
   def post_params

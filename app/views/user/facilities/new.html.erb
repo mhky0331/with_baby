@@ -1,10 +1,10 @@
 <div class='col-md-8'>
   <h1>施設新規登録</h1>
   <div class='row'>
-    <%= form_with model: @facility, url: user_facilities_path, method: :post do |f| %>
+    <%= form_with model: @facility, url:user_facilities_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :facility_photos,"施設画像" %>
-        <%= f.file_field :facility_photos, class: "form-control-file", accept: 'image/*' %>
+        <%= f.file_field :facility_photos, multiple: true %>
         <%= f.label :name,"施設名" %>
         <%= f.text_field :name, class: 'form-control' %>
         <%= f.label :content,"施設説明" %>
@@ -87,4 +87,4 @@ function codeAddress(){
 }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.map_api_key %>&callback=initMap" async defer></script>

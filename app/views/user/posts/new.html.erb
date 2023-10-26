@@ -4,7 +4,7 @@
     <%= form_with  url:user_facility_posts_path(facility_id: @facility.id), method: :post do |f| %>
       <div class="form-group">
         <%= f.label :投稿画像 %>
-        <%= f.file_field :posted_photos, class: "form-control-file", accept: 'image/*' %>
+        <%= f.file_field :posted_photos, multiple: true %>
       </div>
       <div class="form-group">
         <%= f.label :投稿内容 %>

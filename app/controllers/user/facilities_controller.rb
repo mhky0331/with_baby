@@ -19,23 +19,29 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   def create
     @facility = Facility.new(facility_params)
     @facility.user_id =current_user.id
-      if @facility.save
-         redirect_to user_facilities_path(@facility.id)
-      else
-         @facility = Facility.all
-         render :new
-      end
+    if @facility.save!
+       redirect_to user_facility_path(@facility.id)
+    else
+       @facility = Facility.all
+       render :new
+    end
   end
 
   def edit
   end
 
   def update
-      if @facility.update(facility_params)
-         redirect_to user_facility_path(@facility.id)
-      else
-         render :edit
+    if params[:facility][:facility_photos_ids]
+      params[:facility][:facility_photos_ids].each do |facility_photos_id|
+        facility_photos = @facility.facility_photos.find(facility_photos_id)
+        facility_photos.purge
       end
+    end
+    if @facility.update(facility_params)
+       redirect_to user_facility_path(@facility.id)
+    else
+       render :edit
+    end
   end
 
   def destroy
@@ -47,7 +53,7 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   private
 
   def facility_params
-    params.require(:facility).permit(:user_id, :name, :content, :lat, :lng, :facility_photos)
+    params.require(:facility).permit(:user_id, :name, :content, :lat, :lng, facility_photos: [])
   end
 
   def ensure_user

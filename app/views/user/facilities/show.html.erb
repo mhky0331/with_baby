@@ -1,57 +1,74 @@
 <div class='container'>
   <h1>施設詳細</h1>
   <div class='row'>
-    <div class='col-md-4'>
-      <% if @facility.facility_photos.attached? %>
-        <%= image_tag @facility.facility_photos[0], size: '250x150' %>
-      <% else %>
-        <%= image_tag 'no_image', size: "250x150" %>
-      <% end %>
-    </div>
     <div class='col-md-6'>
-      <table class="table">
+      <div class="table">
         <tr>
           <td>施設名</td>
           <td><%= @facility.name %></td>
         </tr>
+      </div>
+      <div class="post-partial">
+        <% if @facility.facility_photos.attached? %>
+          <tr id="facility-<%= @facility.id %>">
+            <% @facility.facility_photos.each do |facility_photos| %>
+              <%= image_tag(facility_photos, width:500) %>
+            <% end %>
+          </tr>
+        <% else %>
+          <%= image_tag 'no_image', size: "250x150" %>
+        <% end %>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <table class="table">
         <tr>
           <td>施設説明</td>
           <td><%= @facility.content %></td>
         </tr>
-        <tr>
-          <td>緯度</td>
-          <td><%= @facility.lat %></td>
-        </tr>
-        <tr>
-          <td>経度</td>
-          <td><%= @facility.lng %></td>
-        </tr>
+        <!--住所として表示させたい-->
+        <!--<tr>-->
+        <!--  <td>緯度</td>-->
+        <!--  <td><%#= @facility.lat %></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--  <td>経度</td>-->
+        <!--  <td><%#= @facility.lng %></td>-->
+        <!--</tr>-->
         <tr>
           <td><div id='map'></div></td>
         </tr>
-      </table>
-    </div>
-  </div>
-</div>
-<% if @facility.user == current_user %>
+        <% if @facility.user == current_user %>
   <td id="favorite_buttons_<%= @facility.id %>" >
     <%= render "user/favorites/btn", facility: @facility %>
   </td>
-  <div class='text-center'>
-    <%= link_to "編集する", edit_user_facility_path, class: 'btn btn-success' %>
-  </div>
-  <div class='text-center'>
-    <%= link_to '削除する', user_facility_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%>
-  </div>
+  <td class='text-center'>
+    <%= link_to "編集する", edit_user_facility_path %>
+  </td>
+  <td class='text-center'>
+    <%= link_to '削除する', user_facility_path, method: :delete, data: { confirm: '本当に削除しますか？' }%>
+  </td>
 <% else %>
   <div></div>
   <div></div>
 <% end %>
-<div class='text-center'>
-  <%= link_to "投稿する", new_user_facility_post_path(@facility), class: 'btn btn-success' %>
+      </table>
+    </div>
+  </div>
 </div>
+<div class='row'>
+    <div class='col-md-6'>
+
+</div>
+</div>
+<br>
+<br>
 <div class="container">
   <h1>投稿一覧</h1>
+  <div class='row'>
+  <td class='text-center'>
+    <%= link_to "投稿する", new_user_facility_post_path(@facility), class: 'btn btn-success' %>
+  </td>
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
@@ -64,7 +81,7 @@
     <tbody>
       <% @posts.each do |post| %>
         <tr>
-          <td><%= post.id %></td>
+          <td><%= link_to post.id, user_post_path(post.id) %></td>
           <td><%= link_to post.facility.name, user_facility_path(post.facility.id) %></td>
           <td><%= post.content %></td>
           <td>
@@ -77,6 +94,7 @@
       <% end %>
     </tbody>
   </table>
+</div>
 </div>
 
 <style>
@@ -105,4 +123,4 @@ function initMap(){
   });
 }
 </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.map_api_key %>&callback=initMap" async defer></script>

@@ -5,7 +5,6 @@
         <tr>
           <th>コメントID</th>
           <th>投稿内容</th>
-          <!--<th>削除</th>-->
         </tr>
       </thead>
       <tbody>
@@ -13,7 +12,7 @@
           <tr>
             <td><%= comment.id %></td>
             <td><%= comment.content %></td>
-            <td><%= link_to '削除', @comment, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <td><%= link_to '削除', admin_comment_path(comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
           </tr>
         <% end %>
       </tbody>

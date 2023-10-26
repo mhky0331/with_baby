@@ -4,8 +4,15 @@
     <%= form_with model: @facility, url:user_facility_path(@facility), method: :patch, local: true do |f| %>
       <div class="form-group">
         <%= f.label :施設画像 %>
-        <%= f.file_field :facility_photos, autofocus: true, class: "form-control-file", accept: 'image/*' %>
+        <%= f.file_field :facility_photos, autofocus: true, multiple: true %>
       </div>
+      <% if @facility.facility_photos.present? %>
+        <p>現在登録されている画像（削除するものはチェックしてください）</p>
+        <% @facility.facility_photos.each do |facility_photos| %>
+          <%= f.check_box :facility_photos_ids, {multiple: true}, facility_photos.id, false %>
+          <%= image_tag facility_photos, size:"100x100" %> <br>
+        <% end %>
+      <% end %>
       <div class="form-group">
         <%= f.label :施設名 %>
         <%= f.text_field :name, autofocus: true, class: 'form-control' %>
@@ -14,14 +21,15 @@
         <%= f.label :施設説明 %>
         <%= f.text_area :content, autofocus: true, class: 'form-control' %>
       </div>
-      <div class="form-group">
-        <%= f.label :緯度 %>
-        <%= f.text_field :latitude, autofocus: true, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :経度 %>
-        <%= f.text_field :longitude, autofocus: true, class: 'form-control' %>
-      </div>
+      <!--別の使い方があるか確認-->
+      <!--<div class="form-group">-->
+      <!--  <%#= f.label :緯度 %>-->
+      <!--  <%#= f.text_field :lat, autofocus: true, class: 'form-control' %>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+      <!--  <%#= f.label :経度 %>-->
+      <!--  <%#= f.text_field :lng, autofocus: true, class: 'form-control' %>-->
+      <!--</div>-->
       <div class="form-group">
         <%= f.submit "変更を保存", class: 'btn btn-info' %>
       </div>

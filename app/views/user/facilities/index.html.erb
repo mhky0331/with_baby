@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>施設一覧</h1>l
+  <h1>施設一覧</h1>
     <%= link_to new_user_facility_path, class: "btn" do %>
       <i class="fas fa-plus"></i>施設登録
     <% end %>
@@ -77,4 +77,4 @@
       //複数マーカー ここまで
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.map_api_key %>&callback=initMap" async defer></script>
