@@ -10,7 +10,7 @@
     <%= form_with model: @facility, url: user_facilities_path, method: :post do |f| %>
       <div class="form-group">
         <%= f.label :facility_photos,"施設画像" %>
-        <%= f.file_field :facility_photos, class: "form-control-file", accept: 'image/*' %>
+        <%= f.file_field :facility_photos, class: "form-control-file", accept: 'image/*', multiple: true %>
         <%= f.label :name,"施設名" %>
         <%= f.text_field :name, class: 'form-control' %>
         <%= f.label :content,"施設説明" %>
