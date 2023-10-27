@@ -19,7 +19,7 @@
             <td><%= comment.content %></td>
             <td>
               <% if comment.user == current_user %>
-                <%= link_to "削除", user_post_comment_path(post_id: :), class: "btn btn-sm btn-danger float-end", method: :delete , remote:true, data: {"turbolinks" => false} %>
+                <%= link_to "削除", user_post_comment_path(comment.post_id, id: comment.id), class: "btn btn-sm btn-danger float-end", method: :delete , remote:true, data: {"turbolinks" => false} %>              
               <% end %>
             </td>
           </tr>
