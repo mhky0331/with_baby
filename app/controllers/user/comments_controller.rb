@@ -5,6 +5,10 @@ class User::CommentsController < ApplicationController
     @comments = Comment.all.page(params[:page]).per(10)
   end
 
+  def my_index
+    @comments = Comment.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)

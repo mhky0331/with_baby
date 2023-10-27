@@ -7,6 +7,10 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
     @facilities = Facility.all.page(params[:page]).per(10)
   end
 
+  def my_index
+    @facilities = Facility.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+  end
+
   def show
     @facility = Facility.find(params[:id])
     @posts = Post.where('facility_id = ? ',params[:id])

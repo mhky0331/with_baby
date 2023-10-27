@@ -19,6 +19,10 @@ class User::PostsController < ApplicationController
     @keyword = params[:keyword]
   end
 
+  def my_index
+      @posts = Post.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+  end
+
   def show
     @post = Post.find(params[:id])
     @facility = Facility.where('post_id = ? ',params[:id])
@@ -68,7 +72,6 @@ class User::PostsController < ApplicationController
     @post.destroy
     redirect_to user_posts_path
   end
-
 
   private
 

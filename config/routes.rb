@@ -30,10 +30,12 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: 'homes#top'
     get "search" => "posts#search"
+    get "my_index" => "facilities#my_index"
   end
 
   namespace :user do
     resources :comments, only: [:index]
+    get "my_index" => "comments#my_index"
     resources :facilities do
       resources :favorites, only: [:index]
     end
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index, :create, :destroy]
     end
     resources :posts, exist: [:new, :create] do
+      get "my_index" => "posts#my_index"
       resources :comments, only: [:index, :create, :destroy]
     end
   end

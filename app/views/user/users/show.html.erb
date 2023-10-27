@@ -29,15 +29,15 @@
       <table>
         <tr>
           <td>施設一覧</td>
-          <td><%= link_to "一覧を見る", user_facilities_path, class: 'btn btn-info' %></td>
+          <td><%= link_to "一覧を見る", my_index_path, class: 'btn btn-info' %></td>
         </tr>
         <tr>
           <td>投稿一覧</td>
-          <td><%= link_to "一覧を見る", user_posts_path, class: 'btn btn-info' %></td>
+          <td><%= link_to "一覧を見る", user_post_my_index_path(post_id: :id), class: 'btn btn-info' %></td>
         </tr>
         <tr>
           <td>コメント一覧</td>
-          <td><%= link_to "一覧を見る", user_comments_path, class: 'btn btn-info' %></td>
+          <td><%= link_to "一覧を見る", user_my_index_path, class: 'btn btn-info' %></td>
         </tr>
         <tr>
           <td>お気に入り一覧</td>
