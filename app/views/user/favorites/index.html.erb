@@ -8,10 +8,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @favorites.each do |favorite| %>
+      - if @favorite_list.present?
+        - @favorite_list.each do |facility|
           <tr>
-            <td><%= favorite.id %></td>
-            <td><%= @facility.name %></td>
+            <td><%= facility.name %></td>
           </tr>
         <% end %>
       </tbody>

@@ -10,7 +10,7 @@ class Facility < ApplicationRecord
   validates :name, :content, :lat, :lng, presence: true
 
   def favorited_by?(current_user)
-    favorites.exists?(user_id: current_user.id)
+    @favorites.exists?(user_id: current_user.id)
   end
 
   # geocoded_by :address

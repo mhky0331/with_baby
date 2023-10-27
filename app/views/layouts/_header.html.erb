@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <div class="d-flex align-items-end" style="height:50px;">
-            <li></li>
+            <li><%#= current_user.name %></li>
           </div>
           <li class="nav-item">
             <%= link_to user_user_path, class: 'nav-link' do %>
@@ -33,7 +33,8 @@
             <% end %>
           </li>
         </ul>
-        <%= render "user/posts/search", post: @post %>
+        <!--検索機能ーtopの仕様が変わったら使う-->
+        <%#= render "user/posts/search", post: @post %>
       </div>
     <% elsif admin_signed_in? %>
       <!--管理者ログイン時-->
@@ -104,7 +105,8 @@
             <% end %>
           </li>
         </ul>
-        <%= render "user/posts/search", post: @post %>
+        <!--検索機能ーtopの仕様が変わったら使う-->
+        <%#= render "user/posts/search", post: @post %>
       </div>
     <% end %>
   </nav>

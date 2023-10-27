@@ -1,11 +1,11 @@
-<% if facility.favorited_by?(current_user) %>
-  <%= link_to user_facility_favorite_path(facility), method: :delete, remote: true, data: {"turbolinks" => false} do %>
-    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= facility.favorites.count %> お気に入り
-  <% end %>
-<% else %>
-  <%= link_to user_facility_favorites_path(facility), method: :post, remote: true, data: {"turbolinks" => false} do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    <%= facility.favorites.count %> お気に入り
-  <% end %>
-<% end %>
+#favorite{ id: @facility.id }
+  - if !Favorite.exists?(user: current_user, facility_id: @facility.id)   # お気に入り未登録の時
+    = link_to facility_favorites_path(@facility), method: :post, remote: true, class: "favorite-btn favorite-post" do
+      .i.far.fa-thumbs-up
+        %span いいね！
+        = @facility.favorites.length   # お気に入り登録数
+  - else    # お気に入り登録済みの時
+    = link_to facility_favorites_path(@facility), method: :delete, remote: true, class: "favorite-btn favorite-delete" do
+      .i.far.fa-thumbs-up
+        %span いいね！
+        = @facility.favorites.length   # お気に入り登録数

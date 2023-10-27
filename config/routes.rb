@@ -34,8 +34,12 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :comments, only: [:index]
-    resources :favorites, only: [:index]
-    resource :user, only: [:show, :edit, :update]
+    resources :facilities do
+      resources :favorites, only: [:index]
+    end
+    resource :user, only: [:show, :edit, :update] do
+      get :favorites, on: :collection
+    end
     resources :facilities do
       resources :posts, only: [:new, :create]
       resources :favorites, only: [:index, :create, :destroy]

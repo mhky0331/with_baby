@@ -1,6 +1,10 @@
 <div class="main-visual">
   <div class='container'>
-    <h1><%= current_user.name %>さんWithBabyへようこそ！！</h1>
+    <% if user_signed_in? %>
+    <h1><%= current_user.name %>さんWithBabyへようこそ</h1>
+    <% else %>
+    <h1>WithBabyへようこそ！！</h1>
+    <% end %>
     <div class="search">
       <div class='row'>
         <div class='col-md-4'>
@@ -11,15 +15,14 @@
         </div>
         <div class='col-md-6'>
           <div class="main-visual-content">
-          <p>WithBabyへようこそ！！<br>
-          <br>
-          皆さん赤ちゃんとお出かけはしますか？？<br>
-          お出かけ先で授乳室やおむつ台があるのか、また、お湯や体重計などの<br>
-          設備が備わっているのか調べることが多いと思います。<br>
-          そこでこちらWithBabyです！！<br>
-          赤ちゃんとのお出かけをより楽しめるようにたくさん検索や投稿をして
-          盛り上げましょう！！<br>
-          </p>
+            <p>WithBabyへようこそ<br>
+            <br>
+            皆さん赤ちゃんとお出かけはしますか？<br>
+            お出かけ先で授乳室やおむつ台があるのか、お湯や体重計<br>
+            などの設備が備わっているのか調べることが多いと思います<br>
+            そこでこちらWithBabyです<br>
+            赤ちゃんとのお出かけをより楽しめるように、たくさん<br>
+            検索や投稿をして盛り上げましょう</p>
           </div>
         </div>
       </div>
@@ -37,17 +40,17 @@
             <%= f.text_field :name, class: 'form-control' %>
             <%= f.label :content,"施設説明" %>
             <%= f.text_field :content, class: 'form-control' %>
-            <%= f.label :lat,"緯度" %>
+            <%= f.label :lat,"緯度（入力は不要）" %>
             <%= f.text_field :lat,:value =>"緯度", id: :lat, class: 'form-control' %>
-            <%= f.label :lng,"経度" %>
+            <%= f.label :lng,"経度（入力は不要）" %>
             <%= f.text_field :lng,:value =>"経度", id: :lng, class: 'form-control' %>
             <%= f.submit "新規登録",class: 'btn btn-info' %>
           </div>
         <% end %>
       </div>
       <div class='col-md-6'>
-        <h2>Map</h2>
-        <input id="address" type="textbox" value="", placeholder: "目的地を入力" >
+        <h3>施設を検索</h3>
+        <input id="address" type="textbox" value="", placeholder: "目的地を入力">
         <input type="button" value="検索" onclick="codeAddress()">
         <p>マーカー位置の調整ができます。<p>
       <div id='map'></div>
