@@ -1,5 +1,6 @@
 class User::FacilitiesController < ApplicationController
 
+load_and_authorize_resource
 before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
@@ -22,12 +23,13 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def create
     @facility = Facility.new(facility_params)
-    @facility.user_id =current_user.id
-    if @facility.save!
-       redirect_to user_facility_path(@facility.id)
+    @facility.user_id = current_user.id
+    authorize! :create, @facility
+
+    if @facility.save
+      redirect_to user_facility_path(@facility.id), notice: "施設が正常に登録されました。"
     else
-       @facility = Facility.all
-       render :new
+      render :new
     end
   end
 
@@ -63,7 +65,17 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   def ensure_user
     @facilities = current_user.facilities
     @facility = @facilities.find_by(id: params[:id])
-    redirect_to user_facilities_path(@facility.id) unless @facility
+     redirect_to user_facilities_path(@facility.id) unless @facility
+
+    if @facility
+    if current_user.is_active
+      # 編集や削除の操作を許可する場合の処理
+    else
+      redirect_to user_facilities_path, alert: '利用停止中のため変更や削除はできません'
+    end
+  else
+    redirect_to user_facilities_path, alert: '施設が見つかりません'
+  end
   end
 
 end

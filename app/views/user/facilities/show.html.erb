@@ -1,18 +1,18 @@
 <div class='container'>
-  <h1>施設詳細</h1>
+  <h1>施設名：<%= @facility.name %></h1>
   <div class='row'>
     <div class='col-md-6'>
-      <div class="table">
-        <tr>
-          <td>施設名</td>
-          <td><%= @facility.name %></td>
-        </tr>
-      </div>
+      <!--<div class="table">-->
+      <!--  <tr>-->
+      <!--    <td>施設名：</td>-->
+      <!--    <td><%#= @facility.name %></td>-->
+      <!--  </tr>-->
+      <!--</div>-->
       <div class="post-partial">
         <% if @facility.facility_photos.attached? %>
           <tr id="facility-<%= @facility.id %>">
             <% @facility.facility_photos.each do |facility_photos| %>
-              <%= image_tag(facility_photos, width:500) %>
+              <%= image_tag(facility_photos, width:550) %>
             <% end %>
           </tr>
         <% else %>
@@ -100,7 +100,7 @@
 <style>
 #map {
   height: 300px;
-  width: 300%;
+  width: 180%;
 }
 </style>
 

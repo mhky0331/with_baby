@@ -9,14 +9,18 @@ class User::PostsController < ApplicationController
     else
       @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).posts.page(params[:page]) : Post.all
     end
-    if params[:keyword] != ""
-      if @facility = Facility.find_by(name:params[:keyword])
+    if params[:keyword].present?
+      @facility = Facility.find_by(name: params[:keyword])
+      if @facility
         @posts = @facility.posts.page(params[:page])
       else
         @posts = Post.page(params[:page])
+        # flash.now[:alert] = "施設が見つかりませんでした。施設名を入力してください。"
       end
+    else
+      @posts = Post.page(params[:page])
     end
-    @keyword = params[:keyword]
+      @keyword = params[:keyword]
   end
 
   def my_index
@@ -62,7 +66,7 @@ class User::PostsController < ApplicationController
       end
     end
     if @post.update(post_update_params)
-       redirect_to user_posts_path(@post.id)
+       redirect_to user_post_path(@post.id)
     else
        render :edit
     end

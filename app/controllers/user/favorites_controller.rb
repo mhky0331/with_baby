@@ -4,8 +4,8 @@ class User::FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    favorites = Favorite.where(user_id: current_user.id).pluck(:facility_id)
-    @favorite_list = Facility.where(id: favorites).order("created_at DESC")
+    favorites = Favorite.where(user_id: params[:user_id]).pluck(:facility_id)
+    @favorite = Facility.where(id: favorites).order("created_at DESC")
   end
 
   def create
@@ -22,7 +22,7 @@ class User::FavoritesController < ApplicationController
   private
 
   def set_facility
-    @facility = Facility.find(params[:facility_id])
+    @facility = Facility.find(params[:id])
   end
 
 end

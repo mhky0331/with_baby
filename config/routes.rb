@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   namespace :user do
     resources :comments, only: [:index]
     get "my_index" => "comments#my_index"
+    resources :favorites, only: [:index]
     resources :facilities do
       resources :favorites, only: [:index, :create, :destroy]
     end

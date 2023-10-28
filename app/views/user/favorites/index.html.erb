@@ -7,7 +7,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @favorite_list.each do |facility| %>
+      <% @favorite.each do |facility| %>
         <tr>
           <td><%= link_to facility.name, user_facility_path(facility.id) %></td>
         </tr>
