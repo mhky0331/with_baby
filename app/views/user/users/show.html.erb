@@ -31,22 +31,34 @@
       <table>
         <tr>
           <td>施設一覧</td>
+          <% if @facility.present? %>
           <td><%= link_to "一覧を見る", my_index_path, class: 'btn btn-info' %></td>
+          <% else %>
+            <td>施設投稿がありません</td>
+          <% end %>
         </tr>
         <tr>
           <td>投稿一覧</td>
+          <% if @post.present? %>
           <td><%= link_to "一覧を見る", user_post_my_index_path(post_id: :id), class: 'btn btn-info' %></td>
+          <% else %>
+            <td>投稿がありません</td>
+          <% end %>
         </tr>
         <tr>
-          <td>コメント一覧</td>
+          <td>コメント</td>
+          <% if @comment.present? %>
           <td><%= link_to "一覧を見る", user_my_index_path, class: 'btn btn-info' %></td>
+          <% else %>
+            <td>コメントがありません</td>
+          <% end %>
         </tr>
         <tr>
           <td>お気に入り</td>
-          <% if @facility.present? %>
+          <% if @favorite.present? %>
             <td><%= link_to "一覧を見る", user_facility_favorites_path(facility_id: @facility.id), class: 'btn btn-info' %></td>
           <% else %>
-            <td>お気に入りが存在しません</td>
+            <td>お気に入りしていません</td>
           <% end %>
         </tr>
       </table>

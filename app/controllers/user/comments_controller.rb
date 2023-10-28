@@ -23,6 +23,7 @@ class User::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     @post = Post.find(params[:post_id])
+    # if文でわける
     @comments = @post.comments.page(params[:page]).per(10)
   end
 

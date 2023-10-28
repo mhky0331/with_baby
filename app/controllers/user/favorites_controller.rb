@@ -5,7 +5,7 @@ class User::FavoritesController < ApplicationController
 
   def index
     favorites = Favorite.where(user_id: current_user.id).pluck(:facility_id)
-    @favorite_list = Facility.find(favorites).order("created_at DESC")
+    @favorite_list = Facility.where(id: favorites).order("created_at DESC")
   end
 
   def create

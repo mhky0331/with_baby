@@ -1,20 +1,17 @@
 <div class="container">
-  <h1>お気に入り施設一覧</h1>
-    <table class='table table-hover table-inverse'>
-      <thead>
+  <!--<h1>お気に入り施設一覧</h1>-->
+  <table class='table table-hover table-inverse'>
+    <thead>
+      <tr>
+        <th>お気に入り施設</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @favorite_list.each do |facility| %>
         <tr>
-          <th>お気に入りID</th>
-          <th>お気に入り施設</th>
+          <td><%= link_to facility.name, user_facility_path(facility.id) %></td>
         </tr>
-      </thead>
-      <tbody>
-      - if @favorite_list.present?
-        - @favorite_list.each do |facility|
-          <tr>
-            <td><%= facility.name %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <%= paginate @favorites %>
+      <% end %>
+    </tbody>
+  </table>
 </div>

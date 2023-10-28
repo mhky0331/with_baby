@@ -3,6 +3,9 @@ class User::UsersController < ApplicationController
   def show
     @user = current_user
     @facility = @user.facilities.first
+    @post = @user.posts.first
+    @comment = @user.comments.first
+    @favorite = @user.favorites.first
   end
 
   def edit
