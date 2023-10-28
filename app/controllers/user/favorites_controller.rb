@@ -1,26 +1,28 @@
 class User::FavoritesController < ApplicationController
-  
+
   before_action :set_facility
   before_action :authenticate_user!
-  
+
   def index
-    # .per(10)の数字で一覧ページに表示するレコード数を変更できる
-    @favorites = Favorite.all.page(params[:page]).per(10)
+    favorites = Favorite.where(user_id: current_user.id).pluck(:facility_id)
+    @favorite_list = Facility.find(favorites).order("created_at DESC")
   end
 
   def create
-    favorite = @facility.favorites.new(user_id: current_user.id)
-    favorite.save
+    if @facility.user_id != current_user.id
+      @favorite = Favorite.create(user_id: current_user.id, facility_id: @facility.id)
+    end
   end
 
   def destroy
-    favorite = current_user.favorites.find_by(facility_id: facility.id)
-    favorite.destroy
+    @favorite = Favorite.find_by(user_id: current_user.id, facility_id: @facility.id)
+    @favorite.destroy
   end
 
   private
-  def set_post
-    @facility = Facility.find(params[:post_id])
+
+  def set_facility
+    @facility = Facility.find(params[:facility_id])
   end
-  
+
 end

@@ -1,11 +1,11 @@
 #favorite{ id: @facility.id }
   - if !Favorite.exists?(user: current_user, facility_id: @facility.id)   # お気に入り未登録の時
-    = link_to facility_favorites_path(@facility), method: :post, remote: true, class: "favorite-btn favorite-post" do
+    = link_to user_facility_favorites_path(facility_id: :id), method: :post, remote: true, class: "favorite-btn favorite-post" do
       .i.far.fa-thumbs-up
         %span いいね！
         = @facility.favorites.length   # お気に入り登録数
   - else    # お気に入り登録済みの時
-    = link_to facility_favorites_path(@facility), method: :delete, remote: true, class: "favorite-btn favorite-delete" do
+    = link_to user_facility_favorite_path(facility_id: :id), method: :delete, remote: true, class: "favorite-btn favorite-delete" do
       .i.far.fa-thumbs-up
         %span いいね！
         = @facility.favorites.length   # お気に入り登録数

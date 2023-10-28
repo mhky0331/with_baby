@@ -2,9 +2,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = current_user
-
-    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)  # ログイン中のユーザーのお気に入りのpost_idカラムを取得
-    @favorite_list = Facility.find(favorites)
+    @facility = @user.facilities.first
   end
 
   def edit

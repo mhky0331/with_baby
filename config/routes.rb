@@ -37,14 +37,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:index]
     get "my_index" => "comments#my_index"
     resources :facilities do
-      resources :favorites, only: [:index]
+      resources :favorites, only: [:index, :create, :destroy]
     end
     resource :user, only: [:show, :edit, :update] do
       get :favorites, on: :collection
     end
     resources :facilities do
       resources :posts, only: [:new, :create]
-      resources :favorites, only: [:index, :create, :destroy]
     end
     resources :posts, exist: [:new, :create] do
       get "my_index" => "posts#my_index"

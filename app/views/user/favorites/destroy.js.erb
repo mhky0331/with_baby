@@ -1,1 +1,1 @@
-$("#favorite_<%= @facility.id %>").html("<%= j(render partial: 'favorites/favorite', locals: { facility: @facility }) %>");
+$("#favorite_<%= @facility.id %>").html("<%= j(render partial: 'favorites/btn', locals: { facility: @facility }) %>");

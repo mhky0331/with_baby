@@ -20,7 +20,7 @@ class User::PostsController < ApplicationController
   end
 
   def my_index
-      @posts = Post.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    @posts = Post.where(user_id: current_user.id).includes(:user).order("created_at DESC")
   end
 
   def show
