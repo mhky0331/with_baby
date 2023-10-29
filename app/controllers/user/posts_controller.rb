@@ -31,7 +31,7 @@ class User::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @facility = Facility.where('post_id = ? ',params[:id])
     @comment = Comment.new
-    @comments = Comment.all.page(params[:page]).per(10)
+    @comments = @post.comments.page(params[:page]).per(10)
   end
 
   def new
