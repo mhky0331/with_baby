@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
   def withdrawal
      @user = User.find(params[:id])
      @user.update(is_active: !@user.is_active)
-    if @user.is_active？
+    if @user.is_active?
       flash[:notice] = "利用停止中に変更します"
     else
       flash[:notice] = "利用中に変更します"

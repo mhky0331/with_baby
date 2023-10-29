@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_28_141655) do
+ActiveRecord::Schema.define(version: 2023_10_29_113232) do
 
   create_table "abilities", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2023_10_28_141655) do
   create_table "facilities", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", default: "", null: false
-    t.text "content", default: "", null: false
+    t.text "content", null: false
     t.float "lat", default: 0.0, null: false
     t.float "lng", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -87,8 +87,6 @@ ActiveRecord::Schema.define(version: 2023_10_28_141655) do
     t.integer "equipment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["equipment_id"], name: "index_facility_equipments_on_equipment_id"
-    t.index ["facility_id"], name: "index_facility_equipments_on_facility_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -98,21 +96,11 @@ ActiveRecord::Schema.define(version: 2023_10_28_141655) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "maps", force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.string "text"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "post_equipments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "equipment_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["equipment_id"], name: "index_post_equipments_on_equipment_id"
-    t.index ["post_id"], name: "index_post_equipments_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -130,15 +118,14 @@ ActiveRecord::Schema.define(version: 2023_10_28_141655) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.boolean "is_active", default: false, null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "facility_equipments", "equipment"
-  add_foreign_key "facility_equipments", "facilities"
 end
