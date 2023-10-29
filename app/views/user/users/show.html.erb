@@ -6,7 +6,8 @@
         <% if @user.profile_image.attached? %>
           <%= image_tag @user.profile_image, size: '150x150' %>
         <% else %>
-          <%= image_tag 'user_no_image', size: "150x150" %>
+          <%= image_tag 'user_no_image.jpg', size: "150x150" %>
+          <%= image_tag '/user_no_image.jpg', size: "150x150" %>
         <% end %>
         <tr>
           <td>名前</td>
@@ -18,7 +19,7 @@
         </tr>
       </table>
       <% if @user.email == 'guest@example.com'%>
-      　<p>ゲストユーザーはユーザー情報の編集ができません。</p>
+        <p>ゲストユーザーはユーザー情報の編集ができません。</p>
       <% else %>
         <%= link_to "会員情報編集", edit_user_user_path, class: 'btn btn-success'%>
       <% end %>
