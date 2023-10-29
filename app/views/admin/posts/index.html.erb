@@ -13,8 +13,8 @@
           <tr>
             <td><%= post.id %></td>
             <td><%= link_to post.facility.name, admin_facility_path(post.facility.id) %></td>
-            <td><%= link_to post.content, admin_posts_path(post.id) %></td>
-            <td><%= link_to '削除', admin_posts_path(post.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <td><%= post.content %></td>
+            <td><%= link_to '削除', admin_post_path(post.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
           </tr>
         <% end %>
       </tbody>

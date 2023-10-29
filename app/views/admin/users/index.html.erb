@@ -13,11 +13,16 @@
           <tr>
             <td><%= user.id %></td>
             <td><%= link_to user.name,admin_user_path(user.id) %></td>
-            <td><% if user.is_active %>
+            <td>
+              <% if user.email == 'guest@example.com'%>
+      　         <p></p>
+              <% else %>
+                <% if user.is_active %>
                   利用停止中
                 <% else %>
                   利用中
                 <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>

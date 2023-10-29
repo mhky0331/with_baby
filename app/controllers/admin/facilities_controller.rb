@@ -16,7 +16,7 @@ class Admin::FacilitiesController < ApplicationController
   def update
     @facility = Facility.find(params[:id])
       if @facility.update(facility_params)
-         redirect_to admin_facilities_path(@facility.id)
+         redirect_to admin_facility_path(@facility.id)
       else
          @facilities = Facility.all
          render :edit
@@ -26,6 +26,7 @@ class Admin::FacilitiesController < ApplicationController
   def destroy
     @facility = Facility.find(params[:id])
     @facility.destroy
+    redirect_to admin_facilities_path
   end
 
 

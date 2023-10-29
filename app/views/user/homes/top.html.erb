@@ -2,9 +2,6 @@
   <div class='container'>
     <% if user_signed_in? %>
     <h1><%= current_user.name %>さんWithBabyへようこそ</h1>
-    <% else %>
-    <h1>WithBabyへようこそ！！</h1>
-    <% end %>
     <div class="search">
       <div class='row'>
         <div class='col-md-4'>
@@ -15,9 +12,8 @@
         </div>
         <div class='col-md-6'>
           <div class="main-visual-content">
-            <p>WithBabyへようこそ<br>
+            <p>さっそく検索してみよう<br>
             <br>
-            皆さん赤ちゃんとお出かけはしますか？<br>
             お出かけ先で授乳室やおむつ台があるのか、お湯や体重計<br>
             などの設備が備わっているのか調べることが多いと思います<br>
             そこでこちらWithBabyです<br>
@@ -29,17 +25,17 @@
     </div>
   </div>
   <div class='container'>
-    <h1>施設新規登録</h1>
     <div class='row'>
       <div class='col-md-5'>
+        <h1>施設新規登録</h1>
         <%= form_with model: @facility, url: user_facilities_path, method: :post do |f| %>
           <div class="form-group">
             <%= f.label :facility_photos,"施設画像" %>
             <%= f.file_field :facility_photos, class: "form-control-file", accept: 'image/*', multiple: true %>
             <%= f.label :name,"施設名" %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: "施設名を入力" %>
             <%= f.label :content,"施設説明" %>
-            <%= f.text_field :content, class: 'form-control' %>
+            <%= f.text_field :content, class: 'form-control', placeholder: "施設の特徴などを入力" %>
             <%= f.label :lat,"緯度（入力は不要）" %>
             <%= f.text_field :lat,:value =>"緯度", id: :lat, class: 'form-control' %>
             <%= f.label :lng,"経度（入力は不要）" %>
@@ -49,12 +45,29 @@
         <% end %>
       </div>
       <div class='col-md-6'>
-        <h3>施設を検索</h3>
-        <input id="address" type="textbox" value="", placeholder: "目的地を入力">
+        <h4>施設を検索</h4>
+        <input id="address" type="textbox" value="" placeholder: "目的地を入力">
         <input type="button" value="検索" onclick="codeAddress()">
-        <p>マーカー位置の調整ができます。<p>
+        <p>施設検索（例：東京駅、東京タワー、「イオン」+「地名」など）<p>
+        <p>マーカーは位置の調整ができます。<p>
       <div id='map'></div>
     </div>
+    <% else %>
+      <h1>WithBabyへようこそ！！</h1>
+      <div class='col-md-6'>
+        <div class="main-visual-content">
+          <p>
+          <br>
+          <br>
+          皆さん赤ちゃんとお出かけはしますか？<br>
+          お出かけ先で授乳室やおむつ台があるのか、お湯や体重計<br>
+          などの設備が備わっているのか調べることが多いと思います<br>
+          そこでこちらWithBabyです<br>
+          赤ちゃんとのお出かけをより楽しめるように、たくさん<br>
+          検索や投稿をして盛り上げましょう</p>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

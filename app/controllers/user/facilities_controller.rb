@@ -1,6 +1,6 @@
 class User::FacilitiesController < ApplicationController
 
-load_and_authorize_resource
+# load_and_authorize_resource
 before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def index
