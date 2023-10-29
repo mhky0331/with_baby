@@ -2,23 +2,30 @@
   <h1>施設名：<%= @facility.name %></h1>
   <div class='row'>
     <div class='col-md-6'>
-    <!--<div class="table">-->
-    <!--  <tr>-->
-    <!--    <td>施設名：</td>-->
-    <!--    <td><%#= @facility.name %></td>-->
-    <!--  </tr>-->
-    <!--</div>-->
-      <div class="post-partial">
-        <% if @facility.facility_photos.attached? %>
-          <tr id="facility-<%= @facility.id %>">
-            <% @facility.facility_photos.each do |facility_photos| %>
-              <%= image_tag(facility_photos, height:360,width:550) %>
-            <% end %>
-          </tr>
-        <% else %>
-          <%= image_tag 'no_image', size: "250x150" %>
-        <% end %>
-      </div>
+      <!--<div class="swiper-wrapper">-->
+        <!--<div class="table">-->
+        <!--  <tr>-->
+        <!--    <td>施設名：</td>-->
+        <!--    <td><%#= @facility.name %></td>-->
+        <!--  </tr>-->
+        <!--</div>-->
+        <div class="post-partial">
+          <% if @facility.facility_photos.attached? %>
+            <tr id="facility-<%= @facility.id %>">
+              <% @facility.facility_photos.each do |facility_photos| %>
+                <!--<div class="swiper-slide">-->
+                  <%= image_tag(facility_photos, height:360,width:550) %>
+                <!--</div>-->
+                <!--<div class="swiper-button-prev"></div>-->
+                <!--<div class="swiper-button-next"></div>-->
+                <!--<div class="swiper-pagination"></div>-->
+              <% end %>
+            </tr>
+          <% else %>
+            <%= image_tag 'no_image', size: "550x360" %>
+          <% end %>
+        </div>
+      <!--</div>-->
     </div>
     <div class='col-md-4'>
       <tr>
@@ -129,3 +136,25 @@ function initMap(){
 }
 </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.map_api_key %>&callback=initMap" async defer></script>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.3.7/js/swiper.min.js"></script>-->
+<!--    <script>-->
+<!--        var mySwiper = new Swiper ('.swiper-container', {-->
+          <!--loop: true,        //画像のループ-->
+          <!--effect: 'fade',   //切り替わるときのアニメーション-->
+          <!--speed: 3000,       //画像の切替スピード-->
+          <!--autoplay: {        //自動で動かす-->
+<!--            delay: 3000,-->
+<!--            disableOnInteraction: true-->
+<!--          },-->
+          <!--pagination: {      //ページネーション-->
+<!--            el: '.swiper-pagination',-->
+<!--            type: 'bullets',-->
+<!--            clickable: true-->
+<!--          },-->
+          <!--navigation: {      //ナビケーション-->
+<!--            nextEl: '.swiper-button-next',-->
+<!--            prevEl: '.swiper-button-prev',-->
+<!--          },-->
+<!--        });-->
+<!--    </script>-->

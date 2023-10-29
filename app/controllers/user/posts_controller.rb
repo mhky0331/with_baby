@@ -5,9 +5,9 @@ class User::PostsController < ApplicationController
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
     if params[:all]
-      @posts = Post.all.page(params[:page]).per(10)
-    else
       @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).posts.page(params[:page]) : Post.all
+    else
+      @posts = Post.all.page(params[:page]).per(10)
     end
     if params[:keyword].present?
       @facility = Facility.find_by(name: params[:keyword])
@@ -15,7 +15,6 @@ class User::PostsController < ApplicationController
         @posts = @facility.posts.page(params[:page])
       else
         @posts = Post.page(params[:page])
-        # flash.now[:alert] = "施設が見つかりませんでした。施設名を入力してください。"
       end
     else
       @posts = Post.page(params[:page])
