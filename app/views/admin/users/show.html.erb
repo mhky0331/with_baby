@@ -24,12 +24,12 @@
             <% if @user.email == 'guest@example.com'%>
       　       <p></p>
             <% else %>
-              <% if @user.is_active %>
-                利用停止中
-                <%= link_to "利用中にする", admin_withdrawal_path(@user.id), method: :patch, class: "btn btn-success" %>
-              <% else %>
+              <% if @user.is_active? %>
                 利用中
-                <%= link_to "利用停止中にさせる", admin_withdrawal_path(@user.id), method: :patch, class: "btn btn-danger" %>
+                <%= link_to "利用停止中にする", admin_withdrawal_path(@user.id), method: :patch, class: "btn btn-danger" %>
+              <% else %>
+                利用停止中
+                <%= link_to "利用中にさせる", admin_withdrawal_path(@user.id), method: :patch, class: "btn btn-success" %>
               <% end %>
             <% end %>
           </td>

@@ -15,7 +15,7 @@
         <% end %>
       </div>
     </div>
-    <div class='col-md-6'>
+    <div class='col-md-7'>
       <table class="table">
         <tr>
           <td>施設名</td>
@@ -36,10 +36,10 @@
         <% if @post.user == current_user %>
           <tr>
             <td>
-              <%= link_to "編集する", edit_user_post_path(@post) %>
+              <%= link_to '編集', edit_user_post_path(@post), class: "btn btn-success" %>
             </td>
             <td>
-              <%= link_to '削除する', user_post_path(@post), class: "btn btn-sm btn-danger float-end", method: :delete, data: { confirm: '本当に削除しますか？' }%>
+              <%= link_to '削除', user_post_path(@post), class: "btn btn-sm btn-danger float-end", method: :delete, data: { confirm: '本当に削除しますか？' }%>
             </td>
           </tr>
         <% else %>

@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name
 
       # 会員が利用中か保存するカラム
-      t.boolean "is_active", default: false, null: false
+      t.boolean :is_active, default: true, null: false
 
       t.timestamps null: false
     end

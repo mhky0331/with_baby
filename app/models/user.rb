@@ -28,8 +28,4 @@ class User < ApplicationRecord
     end
   end
 
-  def is_active?
-    is_active
-  end
-
 end

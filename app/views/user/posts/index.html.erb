@@ -23,7 +23,7 @@
             <td><%= post.content %></td>
             <td>
               <% post.equipments.each do |equipment| %>
-                <%= equipment.name %>
+                ・<%= equipment.name %>
               <% end %>
             </td>
             <td>コメント数： <%= post.comments.count %></td>

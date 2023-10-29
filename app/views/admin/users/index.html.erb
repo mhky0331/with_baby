@@ -17,10 +17,10 @@
               <% if user.email == 'guest@example.com'%>
       　         <p></p>
               <% else %>
-                <% if user.is_active %>
-                  利用停止中
-                <% else %>
+                <% if user.is_active? %>
                   利用中
+                <% else %>
+                  利用停止中
                 <% end %>
               <% end %>
             </td>
