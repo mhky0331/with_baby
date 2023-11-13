@@ -11,8 +11,15 @@
       </thead>
       <tbody>
         <% @facilities.each do |facility| %>
-          <tr>
-            <td><%= link_to facility.name, user_facility_path(facility.id) %></td>
+          <tr
+            data-controller="href"
+            data-action="click->href#toHref"
+            data-href="<%= user_facility_path(facility.id) %>"
+            tabindex="0"
+            role="link"
+            style="cursor: pointer;">
+            <td><%= link_to facility.name, user_facility_path(facility.id), data: { controller: 'event', action: 'event#stopPropagation' } %></td>
+             <!--<%#= link_to post_path(post), data: { controller: 'event', action: 'event#stopPropagation' } do %>-->
             <!--<td id="favorite_buttons_<%#= facility.id %>">-->
               <%#= render "user/favorites/btn", { facility: facility } %>
             </td>
