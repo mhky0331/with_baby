@@ -9,7 +9,8 @@ before_action :ensure_user, only: [:edit, :update, :destroy]
   end
 
   def my_index
-    @facilities = Facility.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    @facility = Facility.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    @facilities = Facility.all.page(params[:page]).per(10)
   end
 
   def show

@@ -92,15 +92,15 @@
     <tbody>
       <% @posts.each do |post| %>
         <tr
-            data-controller="href"
-            data-action="click->href#toHref"
-            data-href="<%= user_post_path(post.id) %>"
-            tabindex="0"
-            role="link"
-            style="cursor: pointer;">
-            <td><%= link_to post.facility.name, user_facility_path(post.facility.id), data: { controller: 'event', action: 'event#stopPropagation' } %></td>
-            <td><%= post.content %></td>
-            <td>
+          data-controller="href"
+          data-action="click->href#toHref"
+          data-href="<%= user_post_path(post.id) %>"
+          tabindex="0"
+          role="link"
+          style="cursor: pointer;">
+          <td><%= link_to post.facility.name, user_facility_path(post.facility.id), data: { controller: 'event', action: 'event#stopPropagation' } %></td>
+          <td><%= post.content %></td>
+          <td>
             <% post.equipments.each do |equipment| %>
               ・<%= equipment.name %>
             <% end %>

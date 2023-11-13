@@ -10,12 +10,19 @@
       </tr>
     </thead>
     <tbody>
-      <% @facilities.each do |facility| %>
-        <tr>
-          <td><%= link_to facility.name, user_facility_path(facility.id) %></td>
+      <% @facility.each do |facility| %>
+        <tr
+          data-controller="href"
+          data-action="click->href#toHref"
+          data-href="<%= user_facility_path(facility.id) %>"
+          tabindex="0"
+          role="link"
+          style="cursor: pointer;">
+          <td><%= link_to facility.name, user_facility_path(facility.id), data: { controller: 'event', action: 'event#stopPropagation' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= paginate @facilities, theme: 'twitter-bootstrap-4' %>
 </div>
 
