@@ -84,7 +84,6 @@
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
-        <th>投稿ID</th>
         <th>施設名</th>
         <th>投稿内容</th>
         <th>設備</th>
@@ -92,11 +91,16 @@
     </thead>
     <tbody>
       <% @posts.each do |post| %>
-        <tr>
-          <td><%= link_to post.id, user_post_path(post.id) %></td>
-          <td><%= link_to post.facility.name, user_facility_path(post.facility.id) %></td>
-          <td><%= post.content %></td>
-          <td>
+        <tr
+            data-controller="href"
+            data-action="click->href#toHref"
+            data-href="<%= user_post_path(post.id) %>"
+            tabindex="0"
+            role="link"
+            style="cursor: pointer;">
+            <td><%= link_to post.facility.name, user_facility_path(post.facility.id), data: { controller: 'event', action: 'event#stopPropagation' } %></td>
+            <td><%= post.content %></td>
+            <td>
             <% post.equipments.each do |equipment| %>
               ・<%= equipment.name %>
             <% end %>
