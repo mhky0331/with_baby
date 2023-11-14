@@ -22,7 +22,7 @@ class User::FavoritesController < ApplicationController
   private
 
   def set_facility
-    @facility = Facility.find(params[:id])
+    @facility = Facility.find(params[:facility_id])
   end
 
 end
