@@ -9,9 +9,9 @@ class User::FavoritesController < ApplicationController
   end
 
   def create
-    if @facility.user_id != current_user.id
+    # if @facility.user_id != current_user.id
       @favorite = Favorite.create(user_id: current_user.id, facility_id: @facility.id)
-    end
+    # end
   end
 
   def destroy

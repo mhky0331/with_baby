@@ -1,12 +1,12 @@
   <% if !Favorite.exists?(user: current_user, facility_id: facility.id) %>
-    <%= link_to user_facility_favorites_path(facility.id), method: :post, remote: true, data: { controller: 'event', action: 'event#stopPropagation' }, class: "favorite-btn favorite-post" do %>
+    <%= link_to user_facility_favorites_path(facility.id), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
       <i class="far fa-star"></i>
       <span>お気に入り</span>
       <!--数を表示させたい時に使う-->
       <%#= facility.favorites.length %>
     <% end %>
   <% else %>
-    <%= link_to user_facility_favorite_path(facility, 0), method: :delete, remote: true, data: { controller: 'event', action: 'event#stopPropagation' }, class: "favorite-btn favorite-delete" do %>
+    <%= link_to user_facility_favorite_path(facility, 0), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
       <i class="fas fa-star"></i>
       <span>お気に入り</span>
       <!--数を表示させたい時に使う-->
