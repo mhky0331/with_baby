@@ -4,22 +4,17 @@ class User::PostsController < ApplicationController
 
   def index
     # .per(10)の数字で一覧ページに表示するレコード数を変更できる
-    if params[:all]
-      @posts = params[:equipment_id].present? ? Equipment.find(params[:equipment_id]).posts.page(params[:page]) : Post.all
-    else
-      @posts = Post.all.page(params[:page]).per(10)
-    end
-    if params[:keyword].present?
-      @facility = Facility.find_by(name: params[:keyword])
-      if @facility
-        @posts = @facility.posts.page(params[:page])
+    @posts =
+      if params[:equipment_id].present?
+        Equipment.find(params[:equipment_id]).posts
       else
-        @posts = Post.page(params[:page])
+        Post.all
       end
-    else
-      @posts = Post.page(params[:page])
-    end
-      @keyword = params[:keyword]
+      if params[:keyword].present?
+       @posts = @posts.joins(:facility).where('facilities.name like ?', "%#{params[:keyword]}%")
+      end
+    @posts = @posts.page(params[:page]).per(10)
+    @keyword = params[:keyword]
   end
 
   def my_index
