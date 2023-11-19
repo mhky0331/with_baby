@@ -53,15 +53,16 @@
             <td>コメントがありません</td>
           <% end %>
         </tr>
-        <!--<tr>-->
-        <!--  <td>お気に入り</td>-->
-        <!--  <%# if @favorite.present? %>-->
-        <!--    <td><%#= link_to "一覧を見る", user_favorites_path(user_id: current_user.id), class: 'btn btn-info' %></td>-->
-        <!--  <%# else %>-->
-        <!--    <td>お気に入りしていません</td>-->
-        <!--  <%# end %>-->
-        <!--</tr>-->
       </table>
+      <h3><%= @user.name %>さんのお気に入り</h3>
+      <tr>
+        <td>お気に入り</td>
+        <% if @favorite.present? %>
+          <td><%= link_to "一覧を見る", user_favorites_path(user_id: current_user.id), class: 'btn btn-info' %></td>
+        <% else %>
+          <td>お気に入りしていません</td>
+        <% end %>
+      </tr>
     </div>
   </div>
 </div>
