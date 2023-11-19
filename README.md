@@ -36,8 +36,9 @@
 - 設備を利用した感想、設備の内容、写真を投稿する時
 ​
 ## 設計書
-後ほど作成予定
-​
+- AWSインフラ設計書 : https://docs.google.com/spreadsheets/d/15u3eaZKk0DXBURmARI3ZRS4k1qkrB4aKbfpvKOQRqec/edit?usp=sharing
+- AWS構成図 : https://drive.google.com/file/d/1_5pcSEigALS7T_1uDrra7VcEtGaU-pjF/view?usp=sharing
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -45,3 +46,15 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 ​
+## 機能一覧
+- ユーザー登録、ログイン機能(devise)
+- 投稿機能
+-   画像投稿(Active Storage)
+-   位置情報検索機能(geocoder)
+-   タグ機能
+- お気に入り機能(Ajax)
+- コメント機能(Ajax)
+- ページネーション機能(kaminari)
+- 検索機能
+- 　キーワード検索
+- 　タグ検索
