@@ -1,5 +1,5 @@
 # with_baby
-​<img width="606" alt="スクリーンショット 2023-11-20 6 40 10" src="https://github.com/mhky0331/with_baby/assets/141590159/a0c53156-99da-4645-a6ef-ba2d02094ab7">
+<img width="996" alt="スクリーンショット 2023-11-20 6 50 38" src="https://github.com/mhky0331/with_baby/assets/141590159/20f67fab-3297-4a6e-87ac-d9ff4e634267">
 
 ## サイト概要
 ### サイトテーマ
