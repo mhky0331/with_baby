@@ -52,20 +52,20 @@
         <!--  <td><%#= @facility.lng %></td>-->
         <!--</tr>-->
       </div>
-      <% if @facility.user == current_user %>
-        <!--<td id="favorite_buttons_<%#= @facility.id %>" >-->
-        <!--  <%#= render "user/favorites/btn", facility: @facility %>-->
-        <td class='text-center'>
-          <%= link_to "編集する", edit_user_facility_path, class: "btn btn-success" %>
-        </td>
-        <td class='text-center'>
-          <%= link_to '削除する', user_facility_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"%>
-        </td>
-      <% else %>
-        <div></div>
-        <div></div>
-      <% end %>
     </table>
+    <% if @facility.user == current_user %>
+      <!--<td id="favorite_buttons_<%#= @facility.id %>" >-->
+      <!--  <%#= render "user/favorites/btn", facility: @facility %>-->
+      <td class='text-center'>
+        <%= link_to "編集する", edit_user_facility_path, class: "btn btn-success" %>
+      </td>
+      <td class='text-center'>
+        <%= link_to '削除する', user_facility_path, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"%>
+      </td>
+    <% else %>
+      <div></div>
+      <div></div>
+    <% end %>
   </div>
 </div>
 <div class='row'>

@@ -40,20 +40,18 @@
             <% end %>
           </td>
         </tr>
-        <% if @post.user == current_user %>
-          <tr>
-            <td>
-              <%= link_to '編集', edit_user_post_path(@post), class: "btn btn-success" %>
-            </td>
-            <td>
-              <%= link_to '削除', user_post_path(@post), class: "btn btn-sm btn-danger float-end", method: :delete, data: { confirm: '本当に削除しますか？' }%>
-            </td>
-          </tr>
-        <% else %>
-          <div></div>
-          <div></div>
-        <% end %>
       </table>
+      <% if @post.user == current_user %>
+        <td class='text-center'>
+          <%= link_to '編集する', edit_user_post_path(@post), class: "btn btn-success" %>
+        </td>
+        <td class='text-center'>
+          <%= link_to '削除する', user_post_path(@post), class: "btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' }%>
+        </td>
+      <% else %>
+        <div></div>
+        <div></div>
+      <% end %>
     </div>
   </div>
 </div>
