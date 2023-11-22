@@ -26,7 +26,7 @@
       <table class="table">
         <tr>
           <td>施設名</td>
-          <td><%= @post.facility.name %></td>
+          <td><%= link_to @post.facility.name, user_facility_path(@post.facility.id) %></td>
         </tr>
         <tr>
           <td>内容</td>
