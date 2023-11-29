@@ -1,5 +1,13 @@
 <div class='container'>
     <h1>施設新規登録</h1>
+    <% if @facility.errors.any? %>
+    <%= @facility.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @facility.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <div class='row'>
       <div class='col-md-5'>
         <%= form_with model: @facility, url: user_facilities_path, method: :post do |f| %>
