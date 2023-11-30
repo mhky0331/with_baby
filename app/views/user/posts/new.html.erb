@@ -1,7 +1,8 @@
 <div class='col-md-8'>
   <h1>新規投稿</h1>
+  
   <div class='row'>
-    <%= form_with  url:user_facility_posts_path(facility_id: @facility.id), method: :post do |f| %>
+    <%= form_with url: user_facility_posts_path(facility_id: @facility.id), method: :post do |f| %>
       <div class="form-group">
         <%= f.label :投稿画像 %>
         <%= f.file_field :posted_photos, multiple: true %>
@@ -14,10 +15,10 @@
       <div class="row d-flex justify-content-start m-5">
         <%= f.collection_check_boxes(:equipment_ids, Equipment.all, :id, :name) do |equipment| %>
           <div class="form-check form-check-inline flex flex-wrap">
-              <%= equipment.label do %>
-                <%= equipment.check_box %>
-                <%= equipment.text %>
-              <% end %>
+            <%= equipment.label do %>
+              <%= equipment.check_box %>
+              <%= equipment.text %>
+            <% end %>
           </div>
         <% end %>
       </div>

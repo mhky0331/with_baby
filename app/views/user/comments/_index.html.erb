@@ -5,6 +5,7 @@
         <tr>
           <th>名前</th>
           <th>投稿内容</th>
+          <td>投稿日時</td>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +16,7 @@
               <%= comment.user.name %>
             </td>
             <td><%= comment.content %></td>
+            <td><%= l @post.created_at %></td>
             <td>
               <% if comment.user == current_user %>
                 <%= link_to "削除", user_post_comment_path(comment.post_id, id: comment.id), class: "btn btn-sm btn-danger float-end", method: :delete , remote:true, data: {"turbolinks" => false} %>

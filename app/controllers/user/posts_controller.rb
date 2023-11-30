@@ -38,8 +38,6 @@ class User::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.facility_id = Facility.find(params[:facility_id]).id
-    equipment_ids = params[:equipment_ids].compact_blank
-    equipment_ids.each {|id| @post.post_equipments.build(equipment_id: id) }
     if @post.save
        redirect_to user_post_path(@post.id)
     else

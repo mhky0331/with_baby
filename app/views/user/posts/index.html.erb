@@ -12,6 +12,8 @@
           <th>施設名</th>
           <th>投稿内容</th>
           <th>設備</th>
+          <th>コメント数</th>
+          <th>投稿日時</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +33,7 @@
               <% end %>
             </td>
             <td>コメント数： <%= post.comments.count %></td>
+            <td><%= l post.created_at %></td>
           </tr>
         <% end %>
       </tbody>

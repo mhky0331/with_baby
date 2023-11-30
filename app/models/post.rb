@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   has_many_attached :posted_photos
 
-  validates :content, presence: true
+  validates :content, :equipment_ids, presence: true
 
   def self.search(keyword)
     where("facility.name LIKE ?", "%#{keyword}%")
