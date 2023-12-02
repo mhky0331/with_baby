@@ -3,7 +3,6 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M"
 
-ja:
   activerecord:
     attributes:
       user:
@@ -13,3 +12,5 @@ ja:
       facility:
         name: 施設名
         content: 施設説明
+      post:
+        content: 投稿内容

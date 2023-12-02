@@ -20,8 +20,8 @@
         <% @equipments.each do |equipment| %>
           <tr>
             <td><%= equipment.name %></td>
-            <td align="right"><%= link_to "編集する", edit_admin_equipment_path(equipment.id), class: 'btn btn-success' %></td>
-            <td align="right"><%= link_to "削除する", admin_equipment_path(equipment.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger"%></td>
+            <td align="right"><%= link_to "編集する", edit_admin_equipment_path(equipment.id), class: 'btn btn-sm btn-success' %></td>
+            <td align="right"><%= link_to "削除する", admin_equipment_path(equipment.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger"%></td>
           </tr>
         <% end %>
       </tbody>

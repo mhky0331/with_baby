@@ -1,6 +1,13 @@
 <div class='col-md-8'>
   <h1>新規投稿</h1>
-  
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class='row'>
     <%= form_with url: user_facility_posts_path(facility_id: @facility.id), method: :post do |f| %>
       <div class="form-group">
