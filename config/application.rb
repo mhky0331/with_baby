@@ -20,6 +20,8 @@ module WithBaby
     config.time_zone = 'Asia/Tokyo'
      # デフォルトのロケールを日本（ja）に設定
     config.i18n.default_locale = :ja
+    # I18nライブラリに訳文の探索場所を指示する
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.yml').to_s]
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

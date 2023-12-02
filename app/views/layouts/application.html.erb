@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.3.7/css/swiper.min.css">
     <%= favicon_link_tag('favicon.ico.jpeg') %>
   </head>
-  <header>
-    <%= render 'layouts/header' %>
-  </header>
   <body class="background">
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
     <%= yield %>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
-  <footer>
-    <%= render 'layouts/footer' %>
-  </footer>
 </html>

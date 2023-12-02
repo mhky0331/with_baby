@@ -2,3 +2,14 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      facility:
+        name: 施設名
+        content: 施設説明
